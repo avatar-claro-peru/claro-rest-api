@@ -1,2 +1,2 @@
 # claro-rest-api
-Claro REST API
+Services Rest for Claro-Avatar
