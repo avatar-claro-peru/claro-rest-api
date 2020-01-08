@@ -25,7 +25,7 @@ public class DataConsultarStockOnline {
 	private String serieDisChip;
 
 	@JsonProperty("listaAdicionalResponse")
-	private List<ListaOpcionalesDomain> objetoResponseOpcional;
+	private List<ListaOpcionalesDomain> listaAdicionalResponse;
 
 	/**
 	 * @return the nroLog
@@ -84,17 +84,17 @@ public class DataConsultarStockOnline {
 	}
 
 	/**
-	 * @return the objetoResponseOpcional
+	 * @return the listaAdicionalResponse
 	 */
-	public List<ListaOpcionalesDomain> getObjetoResponseOpcional() {
-		return objetoResponseOpcional;
+	public List<ListaOpcionalesDomain> getListaAdicionalResponse() {
+		return listaAdicionalResponse;
 	}
 
 	/**
-	 * @param objetoResponseOpcional the objetoResponseOpcional to set
+	 * @param listaAdicionalResponse the listaAdicionalResponse to set
 	 */
-	public void setObjetoResponseOpcional(List<ListaOpcionalesDomain> objetoResponseOpcional) {
-		this.objetoResponseOpcional = objetoResponseOpcional;
+	public void setListaAdicionalResponse(List<ListaOpcionalesDomain> listaAdicionalResponse) {
+		this.listaAdicionalResponse = listaAdicionalResponse;
 	}
 
 }

@@ -1,6 +1,8 @@
 package pe.com.claro.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
@@ -25,6 +27,8 @@ import pe.com.claro.bean.HeaderResponseConsultarStockOnline;
 import pe.com.claro.bean.MessageResponse;
 import pe.com.claro.bean.Request;
 import pe.com.claro.bean.Response;
+import pe.com.claro.domain.ErrorDetails;
+import pe.com.claro.domain.ListaOpcionalesDomain;
 import pe.com.claro.domain.ResponseStatus;
 import pe.com.claro.service.ParametroService;
 import pe.com.claro.util.Constante;
@@ -57,8 +61,6 @@ public class ApiRest {
 		HeaderResponse headerResponse = new HeaderResponse();
 		HeaderResponseConsultarStockOnline headerResponseConsultarStockOnline = new HeaderResponseConsultarStockOnline();
 		BodyResponseConsultarStockOnline bodyResponseConsultarStockOnline = new BodyResponseConsultarStockOnline();
-		ResponseStatus responseStatus = new ResponseStatus();
-		DataConsultarStockOnline data = new DataConsultarStockOnline();
 
 		HeaderRequestConsultarStockOnline headerRequest = new HeaderRequestConsultarStockOnline();
 		BodyRequestConsultarStockOnline bodyRequest = new BodyRequestConsultarStockOnline();
@@ -81,10 +83,10 @@ public class ApiRest {
 
 		} catch (IOException e) {
 			log.error(constante.IDT1_CONSULTAR_STOCK_ONLINE_ERROR() + e.getMessage());
-			responseStatus.setCodeResponse(Constante.CODIGO.IDT1_CONSULTAR_STOCK_ONLINE_ERROR);
-			responseStatus.setDescriptionResponse(constante.IDT1_CONSULTAR_STOCK_ONLINE_ERROR());
-			bodyResponseConsultarStockOnline.setResponseStatus(responseStatus);
-			bodyResponseConsultarStockOnline.setResponseDataConsultaStockOnline(data);
+
+			bodyResponseConsultarStockOnline = getBodyResponse(Constante.CODIGO.IDT1_CONSULTAR_STOCK_ONLINE_ERROR,
+					constante.IDT1_CONSULTAR_STOCK_ONLINE_ERROR(), "", "", 0, 0, METHOD_NAME);
+
 			messageResponse.setHeader(headerResponse);
 			messageResponse.setBody(bodyResponseConsultarStockOnline);
 			response.setMessageResponse(messageResponse);
@@ -93,10 +95,10 @@ public class ApiRest {
 		log.info(METHOD_NAME + "Se valida la data ingresada en el HEADER del request.");
 		if (headerRequest == null) {
 			headerResponse.setHeaderResponse(headerResponseConsultarStockOnline);
-			responseStatus.setCodeResponse(Constante.CODIGO.IDF1_CONSULTAR_STOCK_ONLINE_NO_EXITO);
-			responseStatus.setDescriptionResponse(constante.IDF1_CONSULTAR_STOCK_ONLINE_NO_HEADER_CORRECTO());
-			bodyResponseConsultarStockOnline.setResponseStatus(responseStatus);
-			bodyResponseConsultarStockOnline.setResponseDataConsultaStockOnline(data);
+
+			bodyResponseConsultarStockOnline = getBodyResponse(Constante.CODIGO.IDF1_CONSULTAR_STOCK_ONLINE_NO_EXITO,
+					constante.IDF1_CONSULTAR_STOCK_ONLINE_NO_HEADER_CORRECTO(), "", "", 0, 0, METHOD_NAME);
+
 			messageResponse.setHeader(headerResponse);
 			messageResponse.setBody(bodyResponseConsultarStockOnline);
 			response.setMessageResponse(messageResponse);
@@ -108,10 +110,10 @@ public class ApiRest {
 				|| StringUtils.isBlank(bodyRequest.getCodCentro())
 				|| StringUtils.isBlank(bodyRequest.getCodAlmacen())) {
 			headerResponse.setHeaderResponse(headerResponseConsultarStockOnline);
-			responseStatus.setCodeResponse(Constante.CODIGO.IDF1_CONSULTAR_STOCK_ONLINE_NO_EXITO);
-			responseStatus.setDescriptionResponse(constante.IDF2_CONSULTAR_STOCK_ONLINE_NO_REQUEST_CORRECTO());
-			bodyResponseConsultarStockOnline.setResponseStatus(responseStatus);
-			bodyResponseConsultarStockOnline.setResponseDataConsultaStockOnline(data);
+
+			bodyResponseConsultarStockOnline = getBodyResponse(Constante.CODIGO.IDF1_CONSULTAR_STOCK_ONLINE_NO_EXITO,
+					constante.IDF2_CONSULTAR_STOCK_ONLINE_NO_REQUEST_CORRECTO(), "", "", 0, 0, METHOD_NAME);
+
 			messageResponse.setHeader(headerResponse);
 			messageResponse.setBody(bodyResponseConsultarStockOnline);
 			response.setMessageResponse(messageResponse);
@@ -126,58 +128,80 @@ public class ApiRest {
 					.encontrarXNombreParam(Constante.PARAMETRO.SERVICE_REST_CANTIDAD_INVENTARIO_CHIP).getValorParam());
 
 			if (stockMaterial <= 0 && stockChip <= 0) {
-				responseStatus.setCodeResponse(Constante.CODIGO.IDF1_CONSULTAR_STOCK_ONLINE_NO_EXITO);
-				responseStatus.setDescriptionResponse(constante.IDF3_CONSULTAR_STOCK_ONLINE_NO_EXITO());
-				data.setNroLog(Constante.CODIGO.IDF3_CONSULTAR_STOCK_ONLINE_NRO_LOG_SIN_EXITO);
-				data.setDesLog(constante.IDF5_CONSULTAR_STOCK_ONLINE_SIN_STOCK());
-				data.setSerieDisEquipo(String.valueOf(stockMaterial));
-				data.setSerieDisChip(String.valueOf(stockChip));
-				estadoHttp = HttpStatus.CREATED;
-				log.info(METHOD_NAME + responseStatus.getDescriptionResponse());
-			
-			} else if(stockMaterial <= 0) {
-				responseStatus.setCodeResponse(Constante.CODIGO.IDF1_CONSULTAR_STOCK_ONLINE_NO_EXITO);
-				responseStatus.setDescriptionResponse(constante.IDF6_CONSULTAR_STOCK_ONLINE_SIN_STOCK_MATERIAL());
-				data.setNroLog(Constante.CODIGO.IDF3_CONSULTAR_STOCK_ONLINE_NRO_LOG_SIN_EXITO);
-				data.setDesLog(constante.IDF6_CONSULTAR_STOCK_ONLINE_SIN_STOCK_MATERIAL());
-				data.setSerieDisEquipo(String.valueOf(stockMaterial));
-				data.setSerieDisChip(String.valueOf(stockChip));
-				estadoHttp = HttpStatus.CREATED;
-				log.info(METHOD_NAME + responseStatus.getDescriptionResponse());
-			} else if(stockChip <= 0) {
-				responseStatus.setCodeResponse(Constante.CODIGO.IDF1_CONSULTAR_STOCK_ONLINE_NO_EXITO);
-				responseStatus.setDescriptionResponse(constante.IDF7_CONSULTAR_STOCK_ONLINE_SIN_STOCK_CHIP());
-				data.setNroLog(Constante.CODIGO.IDF3_CONSULTAR_STOCK_ONLINE_NRO_LOG_SIN_EXITO);
-				data.setDesLog(constante.IDF7_CONSULTAR_STOCK_ONLINE_SIN_STOCK_CHIP());
-				data.setSerieDisEquipo(String.valueOf(stockMaterial));
-				data.setSerieDisChip(String.valueOf(stockChip));
-				estadoHttp = HttpStatus.CREATED;
-				log.info(METHOD_NAME + responseStatus.getDescriptionResponse());
+				bodyResponseConsultarStockOnline = getBodyResponse(
+						Constante.CODIGO.IDF1_CONSULTAR_STOCK_ONLINE_NO_EXITO,
+						constante.IDF3_CONSULTAR_STOCK_ONLINE_NO_EXITO(),
+						Constante.CODIGO.IDF3_CONSULTAR_STOCK_ONLINE_NRO_LOG_SIN_EXITO,
+						constante.IDF5_CONSULTAR_STOCK_ONLINE_SIN_STOCK(), stockMaterial, stockChip, METHOD_NAME);
+			} else if (stockMaterial <= 0) {
+				bodyResponseConsultarStockOnline = getBodyResponse(
+						Constante.CODIGO.IDF1_CONSULTAR_STOCK_ONLINE_NO_EXITO,
+						constante.IDF6_CONSULTAR_STOCK_ONLINE_SIN_STOCK_MATERIAL(),
+						Constante.CODIGO.IDF3_CONSULTAR_STOCK_ONLINE_NRO_LOG_SIN_EXITO,
+						constante.IDF6_CONSULTAR_STOCK_ONLINE_SIN_STOCK_MATERIAL(), stockMaterial, stockChip,
+						METHOD_NAME);
+			} else if (stockChip <= 0) {
+				bodyResponseConsultarStockOnline = getBodyResponse(
+						Constante.CODIGO.IDF1_CONSULTAR_STOCK_ONLINE_NO_EXITO,
+						constante.IDF7_CONSULTAR_STOCK_ONLINE_SIN_STOCK_CHIP(),
+						Constante.CODIGO.IDF3_CONSULTAR_STOCK_ONLINE_NRO_LOG_SIN_EXITO,
+						constante.IDF7_CONSULTAR_STOCK_ONLINE_SIN_STOCK_CHIP(), stockMaterial, stockChip, METHOD_NAME);
 			} else {
-				responseStatus.setCodeResponse(Constante.CODIGO.IDF2_CONSULTAR_STOCK_ONLINE_NRO_LOG_EXITO);
-				responseStatus.setDescriptionResponse(constante.IDF4_CONSULTAR_STOCK_ONLINE_CON_STOCK());
-				data.setNroLog(Constante.CODIGO.IDF2_CONSULTAR_STOCK_ONLINE_NRO_LOG_EXITO);
-				data.setDesLog(constante.IDF4_CONSULTAR_STOCK_ONLINE_CON_STOCK());
-				data.setSerieDisEquipo(String.valueOf(stockMaterial));
-				data.setSerieDisChip(String.valueOf(stockChip));
+				bodyResponseConsultarStockOnline = getBodyResponse(
+						Constante.CODIGO.IDF2_CONSULTAR_STOCK_ONLINE_NRO_LOG_EXITO,
+						constante.IDF4_CONSULTAR_STOCK_ONLINE_CON_STOCK(),
+						Constante.CODIGO.IDF2_CONSULTAR_STOCK_ONLINE_NRO_LOG_EXITO,
+						constante.IDF4_CONSULTAR_STOCK_ONLINE_CON_STOCK(), stockMaterial, stockChip, METHOD_NAME);
 				estadoHttp = HttpStatus.OK;
-				log.info(METHOD_NAME + responseStatus.getDescriptionResponse());
 			}
-				
 			log.info(METHOD_NAME + "Termina API REST.");
 		} catch (Exception e) {
 			log.error(constante.IDT1_CONSULTAR_STOCK_ONLINE_ERROR() + e.getMessage());
-			responseStatus.setCodeResponse(Constante.CODIGO.IDT1_CONSULTAR_STOCK_ONLINE_ERROR);
-			responseStatus.setDescriptionResponse(constante.IDT1_CONSULTAR_STOCK_ONLINE_ERROR());
+			bodyResponseConsultarStockOnline = getBodyResponse(Constante.CODIGO.IDT1_CONSULTAR_STOCK_ONLINE_ERROR,
+					constante.IDT1_CONSULTAR_STOCK_ONLINE_ERROR(), "", "", 0, 0, METHOD_NAME);
 			estadoHttp = HttpStatus.INTERNAL_SERVER_ERROR;
 		}
 		headerResponse.setHeaderResponse(headerResponseConsultarStockOnline);
-		bodyResponseConsultarStockOnline.setResponseStatus(responseStatus);
-		bodyResponseConsultarStockOnline.setResponseDataConsultaStockOnline(data);
 		messageResponse.setHeader(headerResponse);
 		messageResponse.setBody(bodyResponseConsultarStockOnline);
 		response.setMessageResponse(messageResponse);
 		return new ResponseEntity<>(response, estadoHttp);
+	}
+
+	private BodyResponseConsultarStockOnline getBodyResponse(String codeResponse, String descriptionResponse,
+			String nroLog, String desLog, int stockMaterial, int stockChip, String methodName) {
+
+		BodyResponseConsultarStockOnline bodyResponseConsultarStockOnline = new BodyResponseConsultarStockOnline();
+		ResponseStatus responseStatus = new ResponseStatus();
+		List<ErrorDetails> lstErrorDetails = new ArrayList<ErrorDetails>();
+		DataConsultarStockOnline data = new DataConsultarStockOnline();
+		List<ListaOpcionalesDomain> lstOpcionalesDomain = new ArrayList<ListaOpcionalesDomain>();
+
+		responseStatus.setCodeResponse(codeResponse);
+		responseStatus.setDescriptionResponse(descriptionResponse);
+
+		ErrorDetails errorDetails = new ErrorDetails();
+		errorDetails.setErrorCode("");
+		errorDetails.setErrorDescription("");
+		lstErrorDetails.add(errorDetails);
+		responseStatus.setErrorDetails(lstErrorDetails);
+
+		ListaOpcionalesDomain listaOpcionalesDomain = new ListaOpcionalesDomain();
+		listaOpcionalesDomain.setClave("");
+		listaOpcionalesDomain.setValor("");
+		lstOpcionalesDomain.add(listaOpcionalesDomain);
+		data.setListaAdicionalResponse(lstOpcionalesDomain);
+
+		data.setNroLog(nroLog);
+		data.setDesLog(desLog);
+		data.setSerieDisEquipo(String.valueOf(stockMaterial));
+		data.setSerieDisChip(String.valueOf(stockChip));
+
+		bodyResponseConsultarStockOnline.setResponseStatus(responseStatus);
+		bodyResponseConsultarStockOnline.setResponseDataConsultaStockOnline(data);
+
+		log.info(methodName + responseStatus.getDescriptionResponse());
+		return bodyResponseConsultarStockOnline;
 	}
 
 }
