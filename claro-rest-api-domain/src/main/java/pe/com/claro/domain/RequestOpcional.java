@@ -12,7 +12,7 @@ import pe.com.claro.domain.ListaOpcionalesDomain;
  */
 public class RequestOpcional {
 
-	@JsonProperty("requestOpcional")
+	@JsonProperty("objetoResponseOpcional")
 	private List<ListaOpcionalesDomain> requestOpcional;
 
 	/**

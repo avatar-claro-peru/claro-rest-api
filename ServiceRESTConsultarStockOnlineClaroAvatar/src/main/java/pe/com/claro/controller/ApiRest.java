@@ -29,6 +29,7 @@ import pe.com.claro.bean.Request;
 import pe.com.claro.bean.Response;
 import pe.com.claro.domain.ErrorDetails;
 import pe.com.claro.domain.ListaOpcionalesDomain;
+import pe.com.claro.domain.RequestOpcional;
 import pe.com.claro.domain.ResponseStatus;
 import pe.com.claro.service.ParametroService;
 import pe.com.claro.util.Constante;
@@ -185,12 +186,15 @@ public class ApiRest {
 		errorDetails.setErrorDescription("");
 		lstErrorDetails.add(errorDetails);
 		responseStatus.setErrorDetails(lstErrorDetails);
-
+		
 		ListaOpcionalesDomain listaOpcionalesDomain = new ListaOpcionalesDomain();
 		listaOpcionalesDomain.setClave("");
 		listaOpcionalesDomain.setValor("");
 		lstOpcionalesDomain.add(listaOpcionalesDomain);
-		data.setListaAdicionalResponse(lstOpcionalesDomain);
+		
+		RequestOpcional requestOpcional = new RequestOpcional();
+		requestOpcional.setRequestOpcional(lstOpcionalesDomain);
+		data.setListaAdicionalResponse(requestOpcional);
 
 		data.setNroLog(nroLog);
 		data.setDesLog(desLog);
