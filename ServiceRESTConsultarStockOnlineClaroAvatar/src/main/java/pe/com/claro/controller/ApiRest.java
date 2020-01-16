@@ -29,7 +29,7 @@ import pe.com.claro.bean.Request;
 import pe.com.claro.bean.Response;
 import pe.com.claro.domain.ErrorDetails;
 import pe.com.claro.domain.ListaOpcionalesDomain;
-import pe.com.claro.domain.RequestOpcional;
+import pe.com.claro.domain.ResponseOpcional;
 import pe.com.claro.domain.ResponseStatus;
 import pe.com.claro.service.ParametroService;
 import pe.com.claro.util.Constante;
@@ -107,7 +107,7 @@ public class ApiRest {
 		}
 		log.info(METHOD_NAME + "Se valida la data ingresada en el BODY del request.");
 		if (bodyRequest == null || StringUtils.isBlank(bodyRequest.getCodMaterial())
-				|| StringUtils.isBlank(bodyRequest.getCodMaterialChip()) || StringUtils.isBlank(bodyRequest.getCodPDV())
+				|| StringUtils.isBlank(bodyRequest.getCodPDV())
 				|| StringUtils.isBlank(bodyRequest.getCodCentro())
 				|| StringUtils.isBlank(bodyRequest.getCodAlmacen())) {
 			headerResponse.setHeaderResponse(headerResponseConsultarStockOnline);
@@ -192,9 +192,9 @@ public class ApiRest {
 		listaOpcionalesDomain.setValor("");
 		lstOpcionalesDomain.add(listaOpcionalesDomain);
 		
-		RequestOpcional requestOpcional = new RequestOpcional();
-		requestOpcional.setRequestOpcional(lstOpcionalesDomain);
-		data.setListaAdicionalResponse(requestOpcional);
+		ResponseOpcional responseOpcional = new ResponseOpcional();
+		responseOpcional.setResponseOpcional(lstOpcionalesDomain);
+		data.setListaAdicionalResponse(responseOpcional);
 
 		data.setNroLog(nroLog);
 		data.setDesLog(desLog);
