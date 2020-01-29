@@ -1,1 +1,1 @@
-Iniciando ##### Services REST SISACT Avatar: ServiceRESTConsultarStockOnlineClaroAvatar #####
+Iniciando ##### Service REST SISACT Avatar: ServiceRESTConsultarStockOnlineClaroAvatar #####
