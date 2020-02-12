@@ -1,2 +1,1 @@
-# claro-rest-api prueba2
-Services Rest for Claro-Avatar2
+# claro-rest-api Services Rest for Claro-Avatar2

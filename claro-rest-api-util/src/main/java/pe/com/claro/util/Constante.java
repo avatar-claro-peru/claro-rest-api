@@ -166,6 +166,8 @@ public class Constante {
 		
 		public static final String SERVICE_REST_CANTIDAD_INVENTARIO_MATERIAL = "service.rest.cantidad.inventario.material";
 		public static final String SERVICE_REST_CANTIDAD_INVENTARIO_CHIP = "service.rest.cantidad.inventario.chip";
+		
+		public static final String GENERICO_VACIO = "0";
 
 	}
 	

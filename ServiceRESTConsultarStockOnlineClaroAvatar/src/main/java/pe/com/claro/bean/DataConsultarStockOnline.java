@@ -1,10 +1,6 @@
 package pe.com.claro.bean;
 
-import java.util.List;
-
 import com.fasterxml.jackson.annotation.JsonProperty;
-
-import pe.com.claro.domain.ListaOpcionalesDomain;
 
 /**
  * @author Jhonny Cisneros
@@ -25,7 +21,7 @@ public class DataConsultarStockOnline {
 	private String serieDisChip;
 
 	@JsonProperty("listaAdicionalResponse")
-	private List<ListaOpcionalesDomain> listaAdicionalResponse;
+	private Object listaAdicionalResponse;
 
 	/**
 	 * @return the nroLog
@@ -86,14 +82,14 @@ public class DataConsultarStockOnline {
 	/**
 	 * @return the listaAdicionalResponse
 	 */
-	public List<ListaOpcionalesDomain> getListaAdicionalResponse() {
+	public Object getListaAdicionalResponse() {
 		return listaAdicionalResponse;
 	}
 
 	/**
 	 * @param listaAdicionalResponse the listaAdicionalResponse to set
 	 */
-	public void setListaAdicionalResponse(List<ListaOpcionalesDomain> listaAdicionalResponse) {
+	public void setListaAdicionalResponse(Object listaAdicionalResponse) {
 		this.listaAdicionalResponse = listaAdicionalResponse;
 	}
 
