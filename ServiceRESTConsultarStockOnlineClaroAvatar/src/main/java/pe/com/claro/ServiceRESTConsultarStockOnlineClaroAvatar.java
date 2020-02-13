@@ -7,7 +7,8 @@ import org.springframework.boot.web.support.SpringBootServletInitializer;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-
+@SpringBootApplication
+@RestController
 public class ServiceRESTConsultarStockOnlineClaroAvatar extends SpringBootServletInitializer {
 
 	private static Class<ServiceRESTConsultarStockOnlineClaroAvatar> applicationClass = ServiceRESTConsultarStockOnlineClaroAvatar.class;
@@ -16,10 +17,7 @@ public class ServiceRESTConsultarStockOnlineClaroAvatar extends SpringBootServle
 		SpringApplication.run(ServiceRESTConsultarStockOnlineClaroAvatar.class, args);
 	}
 
-	@Override
-	protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
-		return application.sources(applicationClass);
-	}
+
 
 	@RequestMapping(value = "/")
 	public String init() {
