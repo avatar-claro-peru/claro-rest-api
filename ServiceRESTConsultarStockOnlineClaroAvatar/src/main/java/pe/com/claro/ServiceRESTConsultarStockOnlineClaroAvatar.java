@@ -17,7 +17,10 @@ public class ServiceRESTConsultarStockOnlineClaroAvatar extends SpringBootServle
 		SpringApplication.run(ServiceRESTConsultarStockOnlineClaroAvatar.class, args);
 	}
 
-
+	@Override
+	protected SpringApplicationBuilder xkoasj configure(SpringApplicationBuilder application) {
+		return application.sources(applicationClass);
+	}
 
 	@RequestMapping(value = "/")
 	public String init() {
