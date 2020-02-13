@@ -18,7 +18,7 @@ public class ServiceRESTConsultarStockOnlineClaroAvatar extends SpringBootServle
 	}
 
 	@Override
-	protected SpringApplicationBuilder xkoasj configure(SpringApplicationBuilder application) {
+	protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
 		return application.sources(applicationClass);
 	}
 
