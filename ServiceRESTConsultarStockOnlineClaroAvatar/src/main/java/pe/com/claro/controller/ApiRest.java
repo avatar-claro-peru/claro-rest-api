@@ -53,8 +53,8 @@ public class ApiRest {
 
 	@PostMapping(value = "/consultarStockOnline", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Response> consultarStockOnline(@RequestBody Request request) {
-		String METHOD_NAME = "Capa RestController - {consultarStockOnline} ";
-		log.info(METHOD_NAME + "Inicia API REST.");
+		String methodName = "Capa RestController - {consultarStockOnline} ";
+		log.info(methodName , "Inicia API REST.");
 		Response response = new Response();
 		HttpStatus estadoHttp = HttpStatus.CREATED;
 
@@ -69,7 +69,7 @@ public class ApiRest {
 		int stockMaterial = 0;
 		int stockChip = 0;
 
-		log.info(METHOD_NAME + "Se valida la data ingresada en el REQUEST.");
+		log.info(methodName , "Se valida la data ingresada en el REQUEST.");
 		if (request == null || request.getMessageRequest() == null || request.getMessageRequest().getHeader() == null
 				|| request.getMessageRequest().getHeader().getHeaderRequest() == null
 				|| request.getMessageRequest().getBody() == null) {
@@ -87,31 +87,31 @@ public class ApiRest {
 					BodyRequestConsultarStockOnline.class);
 
 		} catch (IOException e) {
-			log.error(constante.IDT1_CONSULTAR_STOCK_ONLINE_ERROR() + e.getMessage());
+			log.error(constante.IDT1_CONSULTAR_STOCK_ONLINE_ERROR() , e.getMessage());
 
 			bodyResponseConsultarStockOnline = getBodyResponse(Constante.CODIGO.IDT1_CONSULTAR_STOCK_ONLINE_ERROR,
 					constante.IDT1_CONSULTAR_STOCK_ONLINE_ERROR(), Constante.PARAMETRO.GENERICO_VACIO,
-					Constante.PARAMETRO.GENERICO_VACIO, stockMaterial, stockChip, METHOD_NAME);
+					Constante.PARAMETRO.GENERICO_VACIO, stockMaterial, stockChip, methodName);
 
 			messageResponse.setHeader(headerResponse);
 			messageResponse.setBody(bodyResponseConsultarStockOnline);
 			response.setMessageResponse(messageResponse);
 			estadoHttp = HttpStatus.INTERNAL_SERVER_ERROR;
 		}
-		log.info(METHOD_NAME + "Se valida la data ingresada en el HEADER del request.");
+		log.info(methodName , "Se valida la data ingresada en el HEADER del request.");
 		if (headerRequest == null) {
 			headerResponse.setHeaderResponse(headerResponseConsultarStockOnline);
 
 			bodyResponseConsultarStockOnline = getBodyResponse(Constante.CODIGO.IDF1_CONSULTAR_STOCK_ONLINE_NO_EXITO,
 					constante.IDF1_CONSULTAR_STOCK_ONLINE_NO_HEADER_CORRECTO(), Constante.PARAMETRO.GENERICO_VACIO,
-					Constante.PARAMETRO.GENERICO_VACIO, stockMaterial, stockChip, METHOD_NAME);
+					Constante.PARAMETRO.GENERICO_VACIO, stockMaterial, stockChip, methodName);
 
 			messageResponse.setHeader(headerResponse);
 			messageResponse.setBody(bodyResponseConsultarStockOnline);
 			response.setMessageResponse(messageResponse);
 			return new ResponseEntity<>(response, estadoHttp);
 		}
-		log.info(METHOD_NAME + "Se valida la data ingresada en el BODY del request.");
+		log.info(methodName , "Se valida la data ingresada en el BODY del request.");
 		if (bodyRequest == null || StringUtils.isBlank(bodyRequest.getCodMaterial())
 				|| StringUtils.isBlank(bodyRequest.getCodPDV()) || StringUtils.isBlank(bodyRequest.getCodCentro())
 				|| StringUtils.isBlank(bodyRequest.getCodAlmacen())) {
@@ -119,7 +119,7 @@ public class ApiRest {
 
 			bodyResponseConsultarStockOnline = getBodyResponse(Constante.CODIGO.IDF1_CONSULTAR_STOCK_ONLINE_NO_EXITO,
 					constante.IDF2_CONSULTAR_STOCK_ONLINE_NO_REQUEST_CORRECTO(), Constante.PARAMETRO.GENERICO_VACIO,
-					Constante.PARAMETRO.GENERICO_VACIO, stockMaterial, stockChip, METHOD_NAME);
+					Constante.PARAMETRO.GENERICO_VACIO, stockMaterial, stockChip, methodName);
 
 			messageResponse.setHeader(headerResponse);
 			messageResponse.setBody(bodyResponseConsultarStockOnline);
@@ -146,34 +146,34 @@ public class ApiRest {
 						Constante.CODIGO.IDF1_CONSULTAR_STOCK_ONLINE_NO_EXITO,
 						constante.IDF3_CONSULTAR_STOCK_ONLINE_NO_EXITO(),
 						Constante.CODIGO.IDF3_CONSULTAR_STOCK_ONLINE_NRO_LOG_SIN_EXITO,
-						constante.IDF5_CONSULTAR_STOCK_ONLINE_SIN_STOCK(), stockMaterial, stockChip, METHOD_NAME);
+						constante.IDF5_CONSULTAR_STOCK_ONLINE_SIN_STOCK(), stockMaterial, stockChip, methodName);
 			} else if (stockMaterial <= 0) {
 				bodyResponseConsultarStockOnline = getBodyResponse(
 						Constante.CODIGO.IDF1_CONSULTAR_STOCK_ONLINE_NO_EXITO,
 						constante.IDF6_CONSULTAR_STOCK_ONLINE_SIN_STOCK_MATERIAL(),
 						Constante.CODIGO.IDF3_CONSULTAR_STOCK_ONLINE_NRO_LOG_SIN_EXITO,
 						constante.IDF6_CONSULTAR_STOCK_ONLINE_SIN_STOCK_MATERIAL(), stockMaterial, stockChip,
-						METHOD_NAME);
+						methodName);
 			} else if (stockChip <= 0) {
 				bodyResponseConsultarStockOnline = getBodyResponse(
 						Constante.CODIGO.IDF1_CONSULTAR_STOCK_ONLINE_NO_EXITO,
 						constante.IDF7_CONSULTAR_STOCK_ONLINE_SIN_STOCK_CHIP(),
 						Constante.CODIGO.IDF3_CONSULTAR_STOCK_ONLINE_NRO_LOG_SIN_EXITO,
-						constante.IDF7_CONSULTAR_STOCK_ONLINE_SIN_STOCK_CHIP(), stockMaterial, stockChip, METHOD_NAME);
+						constante.IDF7_CONSULTAR_STOCK_ONLINE_SIN_STOCK_CHIP(), stockMaterial, stockChip, methodName);
 			} else {
 				bodyResponseConsultarStockOnline = getBodyResponse(
 						Constante.CODIGO.IDF2_CONSULTAR_STOCK_ONLINE_NRO_LOG_EXITO,
 						constante.IDF4_CONSULTAR_STOCK_ONLINE_CON_STOCK(),
 						Constante.CODIGO.IDF2_CONSULTAR_STOCK_ONLINE_NRO_LOG_EXITO,
-						constante.IDF4_CONSULTAR_STOCK_ONLINE_CON_STOCK(), stockMaterial, stockChip, METHOD_NAME);
+						constante.IDF4_CONSULTAR_STOCK_ONLINE_CON_STOCK(), stockMaterial, stockChip, methodName);
 				estadoHttp = HttpStatus.OK;
 			}
-			log.info(METHOD_NAME + "Termina API REST.");
+			log.info(methodName , "Termina API REST.");
 		} catch (Exception e) {
-			log.error(constante.IDT1_CONSULTAR_STOCK_ONLINE_ERROR() + e.getMessage());
+			log.error(constante.IDT1_CONSULTAR_STOCK_ONLINE_ERROR() , e.getMessage());
 			bodyResponseConsultarStockOnline = getBodyResponse(Constante.CODIGO.IDT1_CONSULTAR_STOCK_ONLINE_ERROR,
 					constante.IDT1_CONSULTAR_STOCK_ONLINE_ERROR(), Constante.PARAMETRO.GENERICO_VACIO,
-					Constante.PARAMETRO.GENERICO_VACIO, stockMaterial, stockChip, METHOD_NAME);
+					Constante.PARAMETRO.GENERICO_VACIO, stockMaterial, stockChip, methodName);
 			estadoHttp = HttpStatus.INTERNAL_SERVER_ERROR;
 		}
 		headerResponse.setHeaderResponse(headerResponseConsultarStockOnline);
@@ -188,9 +188,9 @@ public class ApiRest {
 
 		BodyResponseConsultarStockOnline bodyResponseConsultarStockOnline = new BodyResponseConsultarStockOnline();
 		ResponseStatus responseStatus = new ResponseStatus();
-		List<ErrorDetails> lstErrorDetails = new ArrayList<ErrorDetails>();
+		List<ErrorDetails> lstErrorDetails = new ArrayList<>();
 		DataConsultarStockOnline data = new DataConsultarStockOnline();
-		List<ListaOpcionalesDomain> lstOpcionalesDomain = new ArrayList<ListaOpcionalesDomain>();
+		List<ListaOpcionalesDomain> lstOpcionalesDomain = new ArrayList<>();
 
 		responseStatus.setCodeResponse(codeResponse);
 		responseStatus.setDescriptionResponse(descriptionResponse);
@@ -218,7 +218,7 @@ public class ApiRest {
 		bodyResponseConsultarStockOnline.setResponseStatus(responseStatus);
 		bodyResponseConsultarStockOnline.setResponseDataConsultaStockOnline(data);
 
-		log.info(methodName + responseStatus.getDescriptionResponse());
+		log.info(methodName , responseStatus.getDescriptionResponse());
 		return bodyResponseConsultarStockOnline;
 	}
 
