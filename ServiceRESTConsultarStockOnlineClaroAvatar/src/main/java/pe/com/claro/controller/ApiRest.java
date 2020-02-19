@@ -53,7 +53,7 @@ public class ApiRest {
 
 	@PostMapping(value = "/consultarStockOnline", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Response> consultarStockOnline(@RequestBody Request request) {
-		String methodName = "Capa RestController - {consultarStockOnline} ";
+		String methodName = "Capa RestController - {consultarStockOnline} test";
 		log.info(methodName , "Inicia API REST.");
 		Response response = new Response();
 		HttpStatus estadoHttp = HttpStatus.CREATED;
