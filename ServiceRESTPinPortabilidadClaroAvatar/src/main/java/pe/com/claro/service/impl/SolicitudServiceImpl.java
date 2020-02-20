@@ -29,6 +29,7 @@ public class SolicitudServiceImpl implements SolicitudService {
 
 	private static final long serialVersionUID = 1L;
 	private static final Logger log = LoggerFactory.getLogger(SolicitudServiceImpl.class);
+	private static final String ENTIDAD = "Solicitud";
 
 	@Autowired
 	private SolicitudDao solicitudDao;
@@ -38,43 +39,37 @@ public class SolicitudServiceImpl implements SolicitudService {
 
 	@Override
 	public Solicitud crear(Solicitud t) throws Exception {
-		String methodName = "Capa Service  - {crear} ";
-		log.info(methodName , "Inicia lógica para crear una Solicitud.");
+		log.info(Constante.GENERICO.LOG_INICIA_PROCESO_PARA + Constante.GENERICO.LOG_CRUD_CREAR + ENTIDAD);
 		return solicitudDao.save(t);
 	}
 
 	@Override
 	public Solicitud actualizar(Solicitud t) throws Exception {
-		String methodName = "Capa Service  - {actualizar} ";
-		log.info(methodName , "Inicia lógica para actualizar una Solicitud.");
+		log.info(Constante.GENERICO.LOG_INICIA_PROCESO_PARA + Constante.GENERICO.LOG_CRUD_ACTUALIZAR + ENTIDAD);
 		return solicitudDao.save(t);
 	}
 
 	@Override
 	public void eliminar(Solicitud t) throws Exception {
-		String methodName = "Capa Service  - {eliminar} ";
-		log.info(methodName , "Inicia lógica para eliminar una Solicitud.");
+		log.info(Constante.GENERICO.LOG_INICIA_PROCESO_PARA + Constante.GENERICO.LOG_CRUD_ELIMINAR + ENTIDAD);
 		solicitudDao.delete(t);
 	}
 
 	@Override
 	public void eliminarXId(Integer id) throws Exception {
-		String methodName = "Capa Service  - {eliminarXId} ";
-		log.info(methodName , "Inicia lógica para eliminar por ID una Solicitud.");
+		log.info(Constante.GENERICO.LOG_INICIA_PROCESO_PARA + Constante.GENERICO.LOG_CRUD_ELIMINAR_X_ID + ENTIDAD);
 		solicitudDao.delete(id);
 	}
 
 	@Override
 	public Solicitud encontrarXId(Integer id) throws Exception {
-		String methodName = "Capa Service  - {encontrarXId} ";
-		log.info(methodName , "Inicia lógica para encontrar por ID una Solicitud.");
+		log.info(Constante.GENERICO.LOG_INICIA_PROCESO_PARA + Constante.GENERICO.LOG_CRUD_ENCONTRAR_X_ID + ENTIDAD);
 		return solicitudDao.findOne(id);
 	}
 
 	@Override
 	public List<Solicitud> encontrarTodos() throws Exception {
-		String methodName = "Capa Service  - {encontrarTodos} ";
-		log.info(methodName , "Inicia lógica para encontrar todas las Solicitudes.");
+		log.info(Constante.GENERICO.LOG_INICIA_PROCESO_PARA + Constante.GENERICO.LOG_CRUD_ENCONTRAR_X_TODOS + ENTIDAD);
 		return solicitudDao.findAll();
 	}
 
@@ -83,13 +78,13 @@ public class SolicitudServiceImpl implements SolicitudService {
 		String methodName = "Capa Service  - {validarIntentos} ";
 		log.info(methodName , "Inicia lógica para validar intentos.");
 		RespuestaDomain rpDomain = new RespuestaDomain();
-		int telefono = Integer.valueOf(request.getLinea());
+		Integer telefono = Integer.valueOf(request.getLinea());
 		Timestamp fechaGeneracion = new Timestamp(DateUtil.getFullCurrentDate().getTime());
 		log.info(methodName , "fecha actual de validacion de intentos: " , fechaGeneracion);
 		Integer totalSolicitudes = solicitudDao.totalSolicitudesXLineaYFechaGeneracion(telefono, fechaGeneracion);
 		log.info(methodName , "total de solicitudes ingresadas: " , totalSolicitudes);
 		Integer cantidadMaximaIntentos = Integer.valueOf(parametroService
-				.encontrarXNombreParam(Constante.PARAMETRO.SERVICE_REST_KEY_CANTIDAD_MAXIMA_INTENTOS).getValorParam());
+				.encontrarXParam(Constante.PARAMETRO.SERVICE_REST_KEY_CANTIDAD_MAXIMA_INTENTOS).getValorParam());
 		log.info(methodName , "cantidad maxima de intentos: " , cantidadMaximaIntentos);
 		if (totalSolicitudes == null || totalSolicitudes < cantidadMaximaIntentos) {
 			rpDomain.setCodigo(Constante.PARAMETRO.GENERAR_CODIGO_VALIDAR_INTENTOS_EXITO);
@@ -103,17 +98,17 @@ public class SolicitudServiceImpl implements SolicitudService {
 		String methodName = "Capa Service  - {generarCodigo} ";
 		log.info(methodName , "Inicia lógica para generar un codigo SMS y registrar la solicitud.");
 		RespuestaDomain rpDomain = new RespuestaDomain();
-		int cantidadCaracteresCodigoSMS = Integer.valueOf(parametroService
-				.encontrarXNombreParam(Constante.PARAMETRO.SERVICE_REST_KEY_CANTIDAD_DIGITOS).getValorParam());
+		Integer cantidadCaracteresCodigoSMS = Integer.valueOf(parametroService
+				.encontrarXParam(Constante.PARAMETRO.SERVICE_REST_KEY_CANTIDAD_DIGITOS).getValorParam());
 		log.info(methodName , "cantidad de digitos del codigo SMS a generar: " , cantidadCaracteresCodigoSMS);
 		String codigoSMS = RandomUtil.generarCodigoSMS(cantidadCaracteresCodigoSMS);
-		int cantidadCaracteresToken = Integer.valueOf(parametroService
-				.encontrarXNombreParam(Constante.PARAMETRO.SERVICE_REST_KEY_CANTIDAD_CARACTERES_TOKEN).getValorParam());
+		Integer cantidadCaracteresToken = Integer.valueOf(parametroService
+				.encontrarXParam(Constante.PARAMETRO.SERVICE_REST_KEY_CANTIDAD_CARACTERES_TOKEN).getValorParam());
 		String token = RandomUtil.generarToken(cantidadCaracteresToken);
 
 		try {
 			Solicitud solicitud = new Solicitud();
-			int telefono = Integer.valueOf(request.getLinea());
+			Integer telefono = Integer.valueOf(request.getLinea());
 			solicitud.setCliente(cliente);
 			solicitud.setTelefono(telefono);
 			solicitud.setToken(token);
@@ -154,7 +149,7 @@ public class SolicitudServiceImpl implements SolicitudService {
 				Integer cantidadIntentosFallidos = solicitud.getIntentosFallidos();
 				log.info(methodName , " cantidad de intentos fallidos inicial: " , cantidadIntentosFallidos);
 				Integer cantidadMaximaIntentosFallidos = Integer.valueOf(parametroService
-						.encontrarXNombreParam(Constante.PARAMETRO.SERVICE_REST_KEY_CANTIDAD_MAXIMA_INTENTOS_FALLIDOS)
+						.encontrarXParam(Constante.PARAMETRO.SERVICE_REST_KEY_CANTIDAD_MAXIMA_INTENTOS_FALLIDOS)
 						.getValorParam());
 				log.info(methodName , " cantidad maxima de intentos fallidos permitido: "
 						, cantidadMaximaIntentosFallidos);

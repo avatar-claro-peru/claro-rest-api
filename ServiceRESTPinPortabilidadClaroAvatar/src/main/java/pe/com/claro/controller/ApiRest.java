@@ -149,7 +149,7 @@ public class ApiRest {
 					log.info(methodName , "Se valido con exitoso el numero de intentos.");
 
 					/** Se valida si existe el cliente */
-					Cliente cliente = clienteService.encontrarXNumDoc(bodyRequest.getNumeroDocumento());
+					Cliente cliente = clienteService.encontrarXParam(bodyRequest.getNumeroDocumento());
 					if (cliente != null) {
 						seValidoExisteCliente = true;
 						log.info(methodName , "Se valido con exitoso que el cliente: " , cliente.getNombre()
@@ -190,17 +190,17 @@ public class ApiRest {
 				DataGenerarCodigo data = new DataGenerarCodigo();
 				data.setEnvioSMS(solicitudCreada.getToken());
 				data.setNumeroIntentos(Integer.valueOf(parametroService
-						.encontrarXNombreParam(Constante.PARAMETRO.SERVICE_REST_KEY_CANTIDAD_MAXIMA_INTENTOS)
+						.encontrarXParam(Constante.PARAMETRO.SERVICE_REST_KEY_CANTIDAD_MAXIMA_INTENTOS)
 						.getValorParam()));
 				data.setNumeroReintentos(Integer.parseInt(rptaValidarIntentos.getValor()));
 				data.setTiempoVentanaModal(Integer.valueOf(parametroService
-						.encontrarXNombreParam(Constante.PARAMETRO.SERVICE_REST_KEY_TIEMPO_VENTANA_MODAL)
+						.encontrarXParam(Constante.PARAMETRO.SERVICE_REST_KEY_TIEMPO_VENTANA_MODAL)
 						.getValorParam()));
 				List<ListaOpcionalesDomain> lstOpcionales = new ArrayList<>();
 				ListaOpcionalesDomain lst = new ListaOpcionalesDomain();
 				lst.setClave(Constante.PARAMETRO.CANTIDAD_DIGITOS);
 				lst.setValor(parametroService
-						.encontrarXNombreParam(Constante.PARAMETRO.SERVICE_REST_KEY_CANTIDAD_DIGITOS).getValorParam());
+						.encontrarXParam(Constante.PARAMETRO.SERVICE_REST_KEY_CANTIDAD_DIGITOS).getValorParam());
 				lstOpcionales.add(lst);
 				data.setListaOpcionales(lstOpcionales);
 				bodyResponse.setData(data);

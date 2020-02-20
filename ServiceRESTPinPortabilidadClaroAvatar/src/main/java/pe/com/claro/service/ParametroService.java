@@ -8,6 +8,6 @@ import pe.com.claro.model.Parametro;
  */
 public interface ParametroService extends GenericService<Parametro, Integer> {
 
-	Parametro encontrarXNombreParam(String nombreParam);
+	Parametro encontrarXParam(String nombreParam);
 
 }

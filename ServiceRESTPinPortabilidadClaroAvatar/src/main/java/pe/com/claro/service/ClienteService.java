@@ -8,6 +8,6 @@ import pe.com.claro.model.Cliente;
  */
 public interface ClienteService extends GenericService<Cliente, Integer> {
 
-	Cliente encontrarXNumDoc(String numeroDocumento);
+	Cliente encontrarXParam(String numeroDocumento);
 
 }

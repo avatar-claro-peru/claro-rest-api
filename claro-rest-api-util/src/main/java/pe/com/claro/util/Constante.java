@@ -115,7 +115,7 @@ public class Constante {
 	public String IDT1_CONSULTAR_STOCK_ONLINE_ERROR() {
 		return messages.get("idt1.consultar.stock.online.error");
 	}
-
+	
 	public abstract class CODIGO {
 		
 		/** CODIGO RESPUESTA FUNCIONAL METODO: GENERAR_CODIGO */
@@ -171,5 +171,15 @@ public class Constante {
 
 	}
 	
-
+	public abstract class GENERICO{
+		public static final String LOG_INICIA_PROCESO_PARA = "Inicia proceso para: ";
+		public static final String LOG_CRUD_CREAR = " crear ";
+		public static final String LOG_CRUD_ACTUALIZAR = " actualizar ";
+		public static final String LOG_CRUD_ELIMINAR = " eliminar ";
+		public static final String LOG_CRUD_ELIMINAR_X_ID = " eliminar por id ";
+		public static final String LOG_CRUD_ENCONTRAR_X_ID = " encontrar por id ";
+		public static final String LOG_CRUD_ENCONTRAR_X_TODOS = " encontrar todos ";
+		public static final String LOG_CRUD_ENCONTRAR_X_PARAMETRO = " encontrar por parametro ";
+	}
+	
 }
