@@ -23,7 +23,7 @@ public class BodyRequestConsultarStockOnline {
 	private String codCentro;
 
 	@JsonProperty("CodAlmacen")
-	private String CodAlmacen;
+	private String codAlmacen;
 
 	@JsonProperty("listaRequestOpcional")
 	private RequestOpcional listaRequestOpcional;
@@ -88,14 +88,14 @@ public class BodyRequestConsultarStockOnline {
 	 * @return the codAlmacen
 	 */
 	public String getCodAlmacen() {
-		return CodAlmacen;
+		return codAlmacen;
 	}
 
 	/**
 	 * @param codAlmacen the codAlmacen to set
 	 */
 	public void setCodAlmacen(String codAlmacen) {
-		CodAlmacen = codAlmacen;
+		this.codAlmacen = codAlmacen;
 	}
 
 	/**

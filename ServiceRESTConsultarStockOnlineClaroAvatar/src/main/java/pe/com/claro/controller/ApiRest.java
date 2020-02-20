@@ -61,7 +61,7 @@ public class ApiRest {
 		MessageResponse messageResponse = new MessageResponse();
 		HeaderResponse headerResponse = new HeaderResponse();
 		HeaderResponseConsultarStockOnline headerResponseConsultarStockOnline = new HeaderResponseConsultarStockOnline();
-		BodyResponseConsultarStockOnline bodyResponseConsultarStockOnline = new BodyResponseConsultarStockOnline();
+		BodyResponseConsultarStockOnline bodyResponseConsultarStockOnline;
 
 		HeaderRequestConsultarStockOnline headerRequest = new HeaderRequestConsultarStockOnline();
 		BodyRequestConsultarStockOnline bodyRequest = new BodyRequestConsultarStockOnline();

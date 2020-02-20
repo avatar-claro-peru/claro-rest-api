@@ -5,9 +5,9 @@ import java.io.Serializable;
 /**
  * @author Jhonny Cisneros
  *
- * @param <Entidad>
- * @param <TipoLlave>
+ * @param <T>
+ * @param <K>
  */
-public interface GenericDao<Entidad, TipoLlave> extends Serializable {
+public interface GenericDao<T, K> extends Serializable {
 
 }

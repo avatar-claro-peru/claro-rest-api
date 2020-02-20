@@ -69,7 +69,7 @@ public class ApiRest {
 		log.info(methodName , "Inicia API REST.");
 		Response response = new Response();
 		HttpStatus estadoHttp = HttpStatus.CREATED;
-		RespuestaDomain codigoSMSGenerado = new RespuestaDomain();
+		RespuestaDomain codigoSMSGenerado;
 		RespuestaDomain rptaValidarIntentos = new RespuestaDomain();
 		Solicitud solicitudCreada = new Solicitud();
 
@@ -77,7 +77,7 @@ public class ApiRest {
 		boolean seValidoNroIntentos = false;
 		boolean seValidoExisteCliente = false;
 		boolean seGeneroCodigoSMS = false;
-		boolean SeEnvioSMS = false;
+		boolean seEnvioSMS = false;
 
 		MessageResponse messageResponse = new MessageResponse();
 		HeaderResponse headerResponse = new HeaderResponse();
@@ -165,7 +165,7 @@ public class ApiRest {
 							log.info(methodName , "Se genero el siguiente codigo SMS: "+solicitudCreada.getCodigoSMS());
 
 							/** Se valida que el flagEnvioSMSIndico = 1 */
-							RespuestaDomain rptaEnvioCodigoSMS = new RespuestaDomain();
+							RespuestaDomain rptaEnvioCodigoSMS;
 							if (Constante.PARAMETRO.FLAG_ENVIO_SMS_INDICO
 									.equalsIgnoreCase(bodyRequest.getFlagSMSIndico())) {
 								/** Se envia el codigo SMS */
@@ -176,7 +176,7 @@ public class ApiRest {
 
 							if (Constante.PARAMETRO.GENERAR_CODIGO_ENVIAR_CODIGO_SMS_EXITO
 									.equalsIgnoreCase(rptaEnvioCodigoSMS.getCodigo())) {
-								SeEnvioSMS = true;
+								seEnvioSMS = true;
 							}
 						}
 					}
@@ -184,7 +184,7 @@ public class ApiRest {
 				}
 			}
 
-			if (esFlagEnvioSMS && seValidoNroIntentos && seValidoExisteCliente && seGeneroCodigoSMS && SeEnvioSMS) {
+			if (esFlagEnvioSMS && seValidoNroIntentos && seValidoExisteCliente && seGeneroCodigoSMS && seEnvioSMS) {
 				bodyResponse.setCodigoRespuesta(Constante.CODIGO.IDF0_GENERAR_CODIGO_EXITO);
 				bodyResponse.setMensajeRespuesta(constante.IDF0_GENERAR_CODIGO_EXITO());
 				DataGenerarCodigo data = new DataGenerarCodigo();
@@ -223,7 +223,7 @@ public class ApiRest {
 					bodyResponse.setCodigoRespuesta(Constante.CODIGO.IDF7_GENERAR_CODIGO_NO_GENERO_CODIGO_SMS);
 					bodyResponse.setMensajeRespuesta(constante.IDF7_GENERAR_CODIGO_NO_GENERO_CODIGO_SMS());
 					log.info(methodName , bodyResponse.getMensajeRespuesta());
-				} else if (!SeEnvioSMS) {
+				} else if (!seEnvioSMS) {
 					bodyResponse.setCodigoRespuesta(Constante.CODIGO.IDF5_GENERAR_CODIGO_NO_ENVIO_SMS);
 					bodyResponse.setMensajeRespuesta(constante.IDF5_GENERAR_CODIGO_NO_ENVIO_SMS());
 					log.info(methodName , bodyResponse.getMensajeRespuesta());
@@ -251,7 +251,7 @@ public class ApiRest {
 		log.info(methodName , "Inicia API REST.");
 		Response response = new Response();
 		HttpStatus estadoHttp = HttpStatus.CREATED;
-		RespuestaDomain codigoValidado = new RespuestaDomain();
+		RespuestaDomain codigoValidado;
 
 		MessageResponse messageResponse = new MessageResponse();
 		HeaderResponse headerResponse = new HeaderResponse();

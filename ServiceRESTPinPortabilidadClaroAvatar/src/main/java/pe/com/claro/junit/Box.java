@@ -15,7 +15,6 @@ public class Box {
 	}
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 			Box box = new Box(10,15);
 			System.out.println("area: " +box.getArea());
 	}

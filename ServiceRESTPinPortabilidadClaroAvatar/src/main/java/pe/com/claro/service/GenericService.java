@@ -6,20 +6,20 @@ import java.util.List;
 /**
  * @author Jhonny Cisneros
  *
- * @param <Entidad>
- * @param <TipoLlave>
+ * @param <T>
+ * @param <K>
  */
-public interface GenericService<Entidad, TipoLlave> extends Serializable {
+public interface GenericService<T, K> extends Serializable {
 
-	Entidad crear(Entidad t);
+	T crear(T t);
 
-	Entidad actualizar(Entidad t);
+	T actualizar(T t);
 
-	void eliminar(Entidad t);
+	void eliminar(T t);
 
-	void eliminarXId(TipoLlave id);
+	void eliminarXId(K id);
 
-	Entidad encontrarXId(TipoLlave id);
+	T encontrarXId(K id);
 
-	List<Entidad> encontrarTodos();
+	List<T> encontrarTodos();
 }
