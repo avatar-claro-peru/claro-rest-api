@@ -38,37 +38,37 @@ public class SolicitudServiceImpl implements SolicitudService {
 	private ParametroService parametroService;
 
 	@Override
-	public Solicitud crear(Solicitud t) throws Exception {
+	public Solicitud crear(Solicitud t) {
 		log.info(Constante.GENERICO.LOG_INICIA_PROCESO_PARA + Constante.GENERICO.LOG_CRUD_CREAR + ENTIDAD);
 		return solicitudDao.save(t);
 	}
 
 	@Override
-	public Solicitud actualizar(Solicitud t) throws Exception {
+	public Solicitud actualizar(Solicitud t) {
 		log.info(Constante.GENERICO.LOG_INICIA_PROCESO_PARA + Constante.GENERICO.LOG_CRUD_ACTUALIZAR + ENTIDAD);
 		return solicitudDao.save(t);
 	}
 
 	@Override
-	public void eliminar(Solicitud t) throws Exception {
+	public void eliminar(Solicitud t) {
 		log.info(Constante.GENERICO.LOG_INICIA_PROCESO_PARA + Constante.GENERICO.LOG_CRUD_ELIMINAR + ENTIDAD);
 		solicitudDao.delete(t);
 	}
 
 	@Override
-	public void eliminarXId(Integer id) throws Exception {
+	public void eliminarXId(Integer id) {
 		log.info(Constante.GENERICO.LOG_INICIA_PROCESO_PARA + Constante.GENERICO.LOG_CRUD_ELIMINAR_X_ID + ENTIDAD);
 		solicitudDao.delete(id);
 	}
 
 	@Override
-	public Solicitud encontrarXId(Integer id) throws Exception {
+	public Solicitud encontrarXId(Integer id) {
 		log.info(Constante.GENERICO.LOG_INICIA_PROCESO_PARA + Constante.GENERICO.LOG_CRUD_ENCONTRAR_X_ID + ENTIDAD);
 		return solicitudDao.findOne(id);
 	}
 
 	@Override
-	public List<Solicitud> encontrarTodos() throws Exception {
+	public List<Solicitud> encontrarTodos() {
 		log.info(Constante.GENERICO.LOG_INICIA_PROCESO_PARA + Constante.GENERICO.LOG_CRUD_ENCONTRAR_X_TODOS + ENTIDAD);
 		return solicitudDao.findAll();
 	}

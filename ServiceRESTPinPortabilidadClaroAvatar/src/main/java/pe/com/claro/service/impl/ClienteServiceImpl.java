@@ -27,44 +27,45 @@ public class ClienteServiceImpl implements ClienteService {
 	private ClienteDao clienteDao;
 
 	@Override
-	public Cliente crear(Cliente t) throws Exception {
+	public Cliente crear(Cliente t) {
 		log.info(Constante.GENERICO.LOG_INICIA_PROCESO_PARA + Constante.GENERICO.LOG_CRUD_CREAR + ENTIDAD);
 		return clienteDao.save(t);
 	}
 
 	@Override
-	public Cliente actualizar(Cliente t) throws Exception {
+	public Cliente actualizar(Cliente t) {
 		log.info(Constante.GENERICO.LOG_INICIA_PROCESO_PARA + Constante.GENERICO.LOG_CRUD_ACTUALIZAR + ENTIDAD);
 		return clienteDao.save(t);
 	}
 
 	@Override
-	public void eliminar(Cliente t) throws Exception {
+	public void eliminar(Cliente t) {
 		log.info(Constante.GENERICO.LOG_INICIA_PROCESO_PARA + Constante.GENERICO.LOG_CRUD_ELIMINAR + ENTIDAD);
 		clienteDao.delete(t);
 	}
 
 	@Override
-	public void eliminarXId(Integer id) throws Exception {
+	public void eliminarXId(Integer id) {
 		log.info(Constante.GENERICO.LOG_INICIA_PROCESO_PARA + Constante.GENERICO.LOG_CRUD_ELIMINAR_X_ID + ENTIDAD);
 		clienteDao.delete(id);
 	}
 
 	@Override
-	public Cliente encontrarXId(Integer id) throws Exception {
+	public Cliente encontrarXId(Integer id) {
 		log.info(Constante.GENERICO.LOG_INICIA_PROCESO_PARA + Constante.GENERICO.LOG_CRUD_ENCONTRAR_X_ID + ENTIDAD);
 		return clienteDao.findOne(id);
 	}
 
 	@Override
-	public List<Cliente> encontrarTodos() throws Exception {
+	public List<Cliente> encontrarTodos() {
 		log.info(Constante.GENERICO.LOG_INICIA_PROCESO_PARA + Constante.GENERICO.LOG_CRUD_ENCONTRAR_X_TODOS + ENTIDAD);
 		return clienteDao.findAll();
 	}
 
 	@Override
 	public Cliente encontrarXParam(String numeroDocumento) {
-		log.info(Constante.GENERICO.LOG_INICIA_PROCESO_PARA + Constante.GENERICO.LOG_CRUD_ENCONTRAR_X_PARAMETRO + ENTIDAD);
+		log.info(Constante.GENERICO.LOG_INICIA_PROCESO_PARA + Constante.GENERICO.LOG_CRUD_ENCONTRAR_X_PARAMETRO
+				+ ENTIDAD);
 		return clienteDao.findByNumDoc(numeroDocumento);
 	}
 

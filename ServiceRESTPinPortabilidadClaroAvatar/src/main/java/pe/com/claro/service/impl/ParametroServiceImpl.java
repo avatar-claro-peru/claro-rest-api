@@ -27,44 +27,45 @@ public class ParametroServiceImpl implements ParametroService {
 	private ParametroDao parametroDao;
 
 	@Override
-	public Parametro crear(Parametro t) throws Exception {
+	public Parametro crear(Parametro t) {
 		log.info(Constante.GENERICO.LOG_INICIA_PROCESO_PARA + Constante.GENERICO.LOG_CRUD_CREAR + ENTIDAD);
 		return parametroDao.save(t);
 	}
 
 	@Override
-	public Parametro actualizar(Parametro t) throws Exception {
+	public Parametro actualizar(Parametro t) {
 		log.info(Constante.GENERICO.LOG_INICIA_PROCESO_PARA + Constante.GENERICO.LOG_CRUD_ACTUALIZAR + ENTIDAD);
 		return parametroDao.save(t);
 	}
 
 	@Override
-	public void eliminar(Parametro t) throws Exception {
+	public void eliminar(Parametro t) {
 		log.info(Constante.GENERICO.LOG_INICIA_PROCESO_PARA + Constante.GENERICO.LOG_CRUD_ELIMINAR + ENTIDAD);
 		parametroDao.delete(t);
 	}
 
 	@Override
-	public void eliminarXId(Integer id) throws Exception {
+	public void eliminarXId(Integer id) {
 		log.info(Constante.GENERICO.LOG_INICIA_PROCESO_PARA + Constante.GENERICO.LOG_CRUD_ELIMINAR_X_ID + ENTIDAD);
 		parametroDao.delete(id);
 	}
 
 	@Override
-	public Parametro encontrarXId(Integer id) throws Exception {
+	public Parametro encontrarXId(Integer id) {
 		log.info(Constante.GENERICO.LOG_INICIA_PROCESO_PARA + Constante.GENERICO.LOG_CRUD_ENCONTRAR_X_ID + ENTIDAD);
 		return parametroDao.findOne(id);
 	}
 
 	@Override
-	public List<Parametro> encontrarTodos() throws Exception {
+	public List<Parametro> encontrarTodos() {
 		log.info(Constante.GENERICO.LOG_INICIA_PROCESO_PARA + Constante.GENERICO.LOG_CRUD_ENCONTRAR_X_TODOS + ENTIDAD);
 		return parametroDao.findAll();
 	}
 
 	@Override
 	public Parametro encontrarXParam(String nombreParam) {
-		log.info(Constante.GENERICO.LOG_INICIA_PROCESO_PARA + Constante.GENERICO.LOG_CRUD_ENCONTRAR_X_PARAMETRO + ENTIDAD);
+		log.info(Constante.GENERICO.LOG_INICIA_PROCESO_PARA + Constante.GENERICO.LOG_CRUD_ENCONTRAR_X_PARAMETRO
+				+ ENTIDAD);
 		return parametroDao.findByNombreParam(nombreParam);
 	}
 

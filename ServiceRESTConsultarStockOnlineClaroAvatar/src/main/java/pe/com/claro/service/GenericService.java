@@ -11,15 +11,15 @@ import java.util.List;
  */
 public interface GenericService<Entidad, TipoLlave> extends Serializable {
 
-	Entidad crear(Entidad t) throws Exception;
+	Entidad crear(Entidad t);
 
-	Entidad actualizar(Entidad t) throws Exception;
+	Entidad actualizar(Entidad t);
 
-	void eliminar(Entidad t) throws Exception;
-	
-	void eliminarXId(TipoLlave id) throws Exception;
+	void eliminar(Entidad t);
 
-	Entidad encontrarXId(TipoLlave id) throws Exception;
+	void eliminarXId(TipoLlave id);
 
-	List<Entidad> encontrarTodos() throws Exception;
+	Entidad encontrarXId(TipoLlave id);
+
+	List<Entidad> encontrarTodos();
 }
