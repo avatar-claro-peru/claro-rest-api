@@ -1,0 +1,62 @@
+<div id="myModal">
+
+	<form class="form-horizontal">
+
+		<div class="modal-header modal-header-primary">
+			<h3 class="modal-title text-center">Editar Formato</h3>
+		</div>
+		<br />
+		<div class="modal-body">
+
+			<div class="form-group">
+				<div class="col-sm-12">
+					<label class="control-label">C&oacute;digo</label> <input
+						id="txtCodigoEdit" name="txtCodigoEdit" type="text"
+						ng-model="editEstado.codigo"
+						placeholder="Ingrese c&oacute;digo del Formato" required="required"
+						class="form-control input-md" autofocus>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<div class="col-sm-12">
+					<label class="control-label">Valor</label> <input
+						id="txtValorEdit" name="txtValorEdit" type="text"
+						ng-model="editEstado.valor"
+						placeholder="Ingrese valor del Formato" required="required"
+						class="form-control input-md">
+				</div>
+			</div>
+
+		</div>
+		<div class="modal-footer">
+			<div class="form-group">
+				<label class="col-md-4 control-label"></label>
+				<div class="col-md-8">
+					<button id="btnActualizar" type="button" ng-click="btnActualizar()"
+						class="btn btn-success">Actualizar</button>
+					<button type="button" ng-click="cancel()" class="btn btn-warning">Cancelar</button>
+				</div>
+			</div>
+		</div>
+
+	</form>
+
+</div>
+<script>
+	document.getElementById("txtCodigoEdit").focus();
+	document.getElementById("txtCodigoEdit").addEventListener("keyup",
+			function(event) {
+				event.preventDefault();
+				if (event.keyCode === 13) {
+					document.getElementById("btnActualizar").click();
+				}
+			});
+	document.getElementById("txtValorEdit").addEventListener("keyup",
+			function(event) {
+				event.preventDefault();
+				if (event.keyCode === 13) {
+					document.getElementById("btnActualizar").click();
+				}
+			});
+</script>

@@ -1,0 +1,24 @@
+{
+	"name": "apirest",
+	"short_name": "apirest",
+	"description": "apirest",
+	"background_color": "#2B2B2B",
+	"theme_color": "#F0DB4F",
+	"orientation": "portrait",
+	"display": "standalone",
+	"start_url": "../",
+	"scope": "../",
+	"lang": "es-PE",
+	"icons": [
+		{
+			"src": "../img/abb.jpg",
+			"sizes": "64x64",
+			"type": "image/jpg"
+		},
+		{
+			"src": "../img/abb.png",
+			"sizes": "64x64",
+			"type": "image/png"
+		}
+	]
+}
