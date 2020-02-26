@@ -195,3 +195,28 @@ app.controller('modalUpdateStockonline', function($scope, $log, $http,$location,
 	};
 
 });
+
+/** *********************** modalListarDataStock - MLL ************************ */
+app.controller('modalListarDataStock', function($scope, $http, $location,
+		$modal, $window, $cookies, $log) {
+	
+	$scope.stockonline = {};
+	$scope.currentPageStockonline = 1;
+	$scope.numPerPageStockonline = 20;
+	
+	$scope.listarDataStock = function() {
+		$http({
+			method : 'GET',
+			url : hostname + apiStockonline + 'listar'
+		}).then(function(response) {
+			$scope.$watch("currentPageStockonline + numPerPageStockonline", function() {
+			    var begin = (($scope.currentPageStockonline - 1) * $scope.numPerPageStockonline)
+			    , end = begin + $scope.numPerPageStockonline;   
+			    $scope.stockonlines = response.data.slice(begin, end);
+			  });
+		}, function(response) {
+			$log.info(response.data);
+			$log.info(response.status);
+		});
+	};
+});

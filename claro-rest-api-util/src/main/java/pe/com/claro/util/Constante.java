@@ -116,6 +116,11 @@ public class Constante {
 		return messages.get("idt1.consultar.stock.online.error");
 	}
 	
+	/** MENSAJES GENERICOS */
+	public String MSJ_INTERNAL_SERVER_ERROR() {
+		return messages.get("msj.internal.server.error");
+	}
+	
 	public abstract class CODIGO {
 		
 		/** CODIGO RESPUESTA FUNCIONAL METODO: GENERAR_CODIGO */
@@ -180,6 +185,15 @@ public class Constante {
 		public static final String LOG_CRUD_ENCONTRAR_X_ID = " encontrar por id ";
 		public static final String LOG_CRUD_ENCONTRAR_X_TODOS = " encontrar todos ";
 		public static final String LOG_CRUD_ENCONTRAR_X_PARAMETRO = " encontrar por parametro ";
+		/* mllamocca_26022020: Se agregan constantes para TrackingStock. INICIO **/
+		public static final String LOG_CRUD_ENCONTRAR_X_COD_MATERIAL_CHIP = " encontrar por codigo de material chip ";
+		public static final String LOG_CRUD_ENCONTRAR_X_COD_MATERIAL = " encontrar por codigo de material ";
+		public static final String COD_RESPUESTA_EXITO = "0";
+		public static final String MSJ_RESPUESTA_EXITO = "Éxito";
+		public static final String COD_RESPUESTA_NO_EXITO = "1";
+		public static final String MSJ_RESPUESTA_NO_EXITO = "No Éxito";
+		public static final String CODIGO_CHIP = "123";
+		/* mllamocca_26022020: Se agregan constantes para TrackingStock. FINAL **/
 	}
 	
 }

@@ -31,7 +31,9 @@ import pe.com.claro.domain.ErrorDetails;
 import pe.com.claro.domain.ListaOpcionalesDomain;
 import pe.com.claro.domain.ResponseOpcional;
 import pe.com.claro.domain.ResponseStatus;
+import pe.com.claro.model.TrackingStock;
 import pe.com.claro.service.ParametroService;
+import pe.com.claro.service.TrackingStockService;
 import pe.com.claro.util.Constante;
 import pe.com.claro.util.JsonUtil;
 
@@ -47,6 +49,9 @@ public class ApiRest {
 
 	@Autowired
 	private ParametroService parametroService;
+	
+	@Autowired
+	private TrackingStockService trackingStockService;
 
 	@Autowired
 	private Constante constante;
@@ -68,6 +73,8 @@ public class ApiRest {
 
 		int stockMaterial = 0;
 		int stockChip = 0;
+		String codigoMaterial = "";
+		String codigoMaterialChip = "";
 
 		log.info(methodName , "Se valida la data ingresada en el REQUEST.");
 		if (request == null || request.getMessageRequest() == null || request.getMessageRequest().getHeader() == null
@@ -91,7 +98,7 @@ public class ApiRest {
 
 			bodyResponseConsultarStockOnline = getBodyResponse(Constante.CODIGO.IDT1_CONSULTAR_STOCK_ONLINE_ERROR,
 					constante.IDT1_CONSULTAR_STOCK_ONLINE_ERROR(), Constante.PARAMETRO.GENERICO_VACIO,
-					Constante.PARAMETRO.GENERICO_VACIO, stockMaterial, stockChip, methodName);
+					Constante.PARAMETRO.GENERICO_VACIO, stockMaterial, stockChip, methodName, codigoMaterial, codigoMaterialChip);
 
 			messageResponse.setHeader(headerResponse);
 			messageResponse.setBody(bodyResponseConsultarStockOnline);
@@ -104,7 +111,7 @@ public class ApiRest {
 
 			bodyResponseConsultarStockOnline = getBodyResponse(Constante.CODIGO.IDF1_CONSULTAR_STOCK_ONLINE_NO_EXITO,
 					constante.IDF1_CONSULTAR_STOCK_ONLINE_NO_HEADER_CORRECTO(), Constante.PARAMETRO.GENERICO_VACIO,
-					Constante.PARAMETRO.GENERICO_VACIO, stockMaterial, stockChip, methodName);
+					Constante.PARAMETRO.GENERICO_VACIO, stockMaterial, stockChip, methodName, codigoMaterial, codigoMaterialChip);
 
 			messageResponse.setHeader(headerResponse);
 			messageResponse.setBody(bodyResponseConsultarStockOnline);
@@ -119,7 +126,7 @@ public class ApiRest {
 
 			bodyResponseConsultarStockOnline = getBodyResponse(Constante.CODIGO.IDF1_CONSULTAR_STOCK_ONLINE_NO_EXITO,
 					constante.IDF2_CONSULTAR_STOCK_ONLINE_NO_REQUEST_CORRECTO(), Constante.PARAMETRO.GENERICO_VACIO,
-					Constante.PARAMETRO.GENERICO_VACIO, stockMaterial, stockChip, methodName);
+					Constante.PARAMETRO.GENERICO_VACIO, stockMaterial, stockChip, methodName, codigoMaterial, codigoMaterialChip);
 
 			messageResponse.setHeader(headerResponse);
 			messageResponse.setBody(bodyResponseConsultarStockOnline);
@@ -130,12 +137,14 @@ public class ApiRest {
 		try {
 
 			if (StringUtils.isNotBlank(bodyRequest.getCodMaterial())) {
+				codigoMaterial = bodyRequest.getCodMaterial();				
 				stockMaterial = Integer.valueOf(parametroService
 						.encontrarXNombreParam(Constante.PARAMETRO.SERVICE_REST_CANTIDAD_INVENTARIO_MATERIAL)
-						.getValorParam());
+						.getValorParam());				
 			}
 
 			if (StringUtils.isNotBlank(bodyRequest.getCodMaterialChip())) {
+				codigoMaterialChip = bodyRequest.getCodMaterialChip();				
 				stockChip = Integer.valueOf(parametroService
 						.encontrarXNombreParam(Constante.PARAMETRO.SERVICE_REST_CANTIDAD_INVENTARIO_CHIP)
 						.getValorParam());
@@ -146,26 +155,26 @@ public class ApiRest {
 						Constante.CODIGO.IDF1_CONSULTAR_STOCK_ONLINE_NO_EXITO,
 						constante.IDF3_CONSULTAR_STOCK_ONLINE_NO_EXITO(),
 						Constante.CODIGO.IDF3_CONSULTAR_STOCK_ONLINE_NRO_LOG_SIN_EXITO,
-						constante.IDF5_CONSULTAR_STOCK_ONLINE_SIN_STOCK(), stockMaterial, stockChip, methodName);
+						constante.IDF5_CONSULTAR_STOCK_ONLINE_SIN_STOCK(), stockMaterial, stockChip, methodName, codigoMaterial, codigoMaterialChip);
 			} else if (stockMaterial <= 0) {
 				bodyResponseConsultarStockOnline = getBodyResponse(
 						Constante.CODIGO.IDF1_CONSULTAR_STOCK_ONLINE_NO_EXITO,
 						constante.IDF6_CONSULTAR_STOCK_ONLINE_SIN_STOCK_MATERIAL(),
 						Constante.CODIGO.IDF3_CONSULTAR_STOCK_ONLINE_NRO_LOG_SIN_EXITO,
 						constante.IDF6_CONSULTAR_STOCK_ONLINE_SIN_STOCK_MATERIAL(), stockMaterial, stockChip,
-						methodName);
+						methodName, codigoMaterial, codigoMaterialChip);
 			} else if (stockChip <= 0) {
 				bodyResponseConsultarStockOnline = getBodyResponse(
 						Constante.CODIGO.IDF1_CONSULTAR_STOCK_ONLINE_NO_EXITO,
 						constante.IDF7_CONSULTAR_STOCK_ONLINE_SIN_STOCK_CHIP(),
 						Constante.CODIGO.IDF3_CONSULTAR_STOCK_ONLINE_NRO_LOG_SIN_EXITO,
-						constante.IDF7_CONSULTAR_STOCK_ONLINE_SIN_STOCK_CHIP(), stockMaterial, stockChip, methodName);
+						constante.IDF7_CONSULTAR_STOCK_ONLINE_SIN_STOCK_CHIP(), stockMaterial, stockChip, methodName, codigoMaterial, codigoMaterialChip);
 			} else {
 				bodyResponseConsultarStockOnline = getBodyResponse(
 						Constante.CODIGO.IDF2_CONSULTAR_STOCK_ONLINE_NRO_LOG_EXITO,
 						constante.IDF4_CONSULTAR_STOCK_ONLINE_CON_STOCK(),
 						Constante.CODIGO.IDF2_CONSULTAR_STOCK_ONLINE_NRO_LOG_EXITO,
-						constante.IDF4_CONSULTAR_STOCK_ONLINE_CON_STOCK(), stockMaterial, stockChip, methodName);
+						constante.IDF4_CONSULTAR_STOCK_ONLINE_CON_STOCK(), stockMaterial, stockChip, methodName, codigoMaterial, codigoMaterialChip);
 				estadoHttp = HttpStatus.OK;
 			}
 			log.info(methodName , "Termina API REST.");
@@ -173,7 +182,7 @@ public class ApiRest {
 			log.error(constante.IDT1_CONSULTAR_STOCK_ONLINE_ERROR() , e.getMessage());
 			bodyResponseConsultarStockOnline = getBodyResponse(Constante.CODIGO.IDT1_CONSULTAR_STOCK_ONLINE_ERROR,
 					constante.IDT1_CONSULTAR_STOCK_ONLINE_ERROR(), Constante.PARAMETRO.GENERICO_VACIO,
-					Constante.PARAMETRO.GENERICO_VACIO, stockMaterial, stockChip, methodName);
+					Constante.PARAMETRO.GENERICO_VACIO, stockMaterial, stockChip, methodName, codigoMaterial, codigoMaterialChip);
 			estadoHttp = HttpStatus.INTERNAL_SERVER_ERROR;
 		}
 		headerResponse.setHeaderResponse(headerResponseConsultarStockOnline);
@@ -184,7 +193,7 @@ public class ApiRest {
 	}
 
 	private BodyResponseConsultarStockOnline getBodyResponse(String codeResponse, String descriptionResponse,
-			String nroLog, String desLog, int stockMaterial, int stockChip, String methodName) {
+			String nroLog, String desLog, int stockMaterial, int stockChip, String methodName, String codigoMaterial, String codigoMaterialChip) {
 
 		BodyResponseConsultarStockOnline bodyResponseConsultarStockOnline = new BodyResponseConsultarStockOnline();
 		ResponseStatus responseStatus = new ResponseStatus();
@@ -218,6 +227,15 @@ public class ApiRest {
 		bodyResponseConsultarStockOnline.setResponseStatus(responseStatus);
 		bodyResponseConsultarStockOnline.setResponseDataConsultaStockOnline(data);
 
+		TrackingStock trackingStock = new TrackingStock();
+		trackingStock.setCodmaterial(codigoMaterial);
+		trackingStock.setCodmaterialchip(codigoMaterialChip);
+		trackingStock.setDeslog(desLog);
+		trackingStock.setNrolog(nroLog);
+		trackingStock.setStockmaterial(stockMaterial);
+		trackingStock.setStockchip(stockChip);
+		trackingStockService.crear(trackingStock);
+		
 		log.info(methodName , responseStatus.getDescriptionResponse());
 		return bodyResponseConsultarStockOnline;
 	}
