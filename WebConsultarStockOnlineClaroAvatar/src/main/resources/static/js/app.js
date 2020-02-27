@@ -3,8 +3,8 @@ var context = '';
 
 document.title = 'apirest';
 
-var apiStockonline = '/api/stockonline/';
+var apiTrackingstock = '/api/trackingstock/';
 
-var hostname = window.location.origin + context;
+var hostname = 'http://localhost:9080/ServiceRESTConsultarStockOnlineClaroAvatar';
 
 var app = angular.module('apirest', [ 'ui.bootstrap', 'ngCookies' ]);

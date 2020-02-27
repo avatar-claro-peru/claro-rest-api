@@ -4,8 +4,11 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.support.SpringBootServletInitializer;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 @SpringBootApplication
+@RestController
 public class ServiceRESTConsultarStockOnlineClaroAvatar extends SpringBootServletInitializer {
 
 	private static Class<ServiceRESTConsultarStockOnlineClaroAvatar> applicationClass = ServiceRESTConsultarStockOnlineClaroAvatar.class;
@@ -17,6 +20,11 @@ public class ServiceRESTConsultarStockOnlineClaroAvatar extends SpringBootServle
 	@Override
 	protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
 		return application.sources(applicationClass);
+	}
+
+	@GetMapping("/")
+	public String init() {
+		return "Service REST Avatar: ServiceRESTConsultarStockOnlineClaroAvatar";
 	}
 
 }

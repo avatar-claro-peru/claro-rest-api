@@ -87,6 +87,13 @@
 			<version>${nekohtml.version}</version>
 		</dependency>
 
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.12</version>
+			<scope>compile</scope>
+		</dependency>
+
 	</dependencies>
 
 	<build>
@@ -114,9 +121,11 @@
 		<module>claro-rest-api-util</module>
 		<module>claro-rest-api-domain</module>
 		<module>claro-rest-api-model</module>
+		<module>claro-rest-api-testunit</module>
 		<!-- <module>ServiceRestDemo</module> -->
 		<module>ServiceRESTPinPortabilidadClaroAvatar</module>
 		<module>ServiceRESTConsultarStockOnlineClaroAvatar</module>
+		<module>WebConsultarStockOnlineClaroAvatar</module>
 	</modules>
 
 </project>

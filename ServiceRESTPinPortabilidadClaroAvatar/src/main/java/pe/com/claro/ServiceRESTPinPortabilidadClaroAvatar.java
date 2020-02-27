@@ -24,7 +24,7 @@ public class ServiceRESTPinPortabilidadClaroAvatar extends SpringBootServletInit
 
 	@GetMapping(value = "/")
 	public String init() {
-		return "Services REST SISACT Avatar: ServiceRESTPinPortabilidadClaroAvatar";
+		return "Services REST Avatar: ServiceRESTPinPortabilidadClaroAvatar";
 	}
 
 }

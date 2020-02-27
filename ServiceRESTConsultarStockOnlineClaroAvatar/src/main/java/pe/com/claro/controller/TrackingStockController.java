@@ -42,7 +42,8 @@ public class TrackingStockController {
 		RespuestaDomain respuesta = new RespuestaDomain();
 		HttpStatus trackingStockHttp = null;
 
-		if (trackingStock == null || StringUtils.isBlank(Integer.toString(trackingStock.getId()))) {
+		if (trackingStock == null || StringUtils.isBlank(trackingStock.getCodmaterial())
+				|| StringUtils.isBlank(trackingStock.getCodmaterialchip())) {
 			respuesta.setCodigo(Constante.GENERICO.COD_RESPUESTA_NO_EXITO);
 			respuesta.setMensaje(Constante.GENERICO.MSJ_RESPUESTA_NO_EXITO);
 			trackingStockHttp = HttpStatus.CREATED;
@@ -128,17 +129,9 @@ public class TrackingStockController {
 		log.info("Inicia método listar TrackingStock.");
 		TrackingStock trackingStock = new TrackingStock();
 		HttpStatus trackingStockHttp = null;
-		String codEquipo = "";
 
 		try {
-
-			if (StringUtils.isNotBlank(trackingStock.getCodmaterial())) {
-				codEquipo = trackingStock.getCodmaterial();
-			} else {
-				codEquipo = trackingStock.getCodmaterialchip();
-			}
-
-			trackingStock = trackingStockService.buscarXCodmaterialchip(codEquipo);
+			trackingStock = trackingStockService.encontrarXId(id);
 			trackingStockHttp = HttpStatus.OK;
 		} catch (Exception e) {
 			log.error(constante.MSJ_INTERNAL_SERVER_ERROR(), e.getMessage());
@@ -146,7 +139,7 @@ public class TrackingStockController {
 		}
 		return new ResponseEntity<>(trackingStock, trackingStockHttp);
 	}
-	
+
 	@GetMapping(value = "/buscar/{codigo}", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<RespuestaDomain> listar(@PathVariable("codigo") String codigo) {
 		log.info("Inicia método buscar por codigo TrackingStock.");
@@ -160,7 +153,7 @@ public class TrackingStockController {
 			trackingStockHttp = HttpStatus.CREATED;
 			return new ResponseEntity<>(respuesta, trackingStockHttp);
 		}
-		
+
 		try {
 
 			if (Constante.GENERICO.CODIGO_CHIP.equalsIgnoreCase(codigo)) {
@@ -179,7 +172,7 @@ public class TrackingStockController {
 			respuesta.setMensaje(Constante.GENERICO.MSJ_RESPUESTA_NO_EXITO);
 			trackingStockHttp = HttpStatus.INTERNAL_SERVER_ERROR;
 		}
-		
+
 		return new ResponseEntity<>(respuesta, trackingStockHttp);
 	}
 

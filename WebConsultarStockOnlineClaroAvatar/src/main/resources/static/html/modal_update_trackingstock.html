@@ -1,0 +1,125 @@
+<div id="myModal">
+
+	<form class="form-horizontal">
+
+		<div class="modal-header modal-header-primary">
+			<h3 class="modal-title text-center">Editar Tracking Stock</h3>
+		</div>
+		<br />
+		<div class="modal-body">
+
+			<div class="form-group">
+				<div class="col-sm-12">
+					<label class="control-label">C&oacute;digo de equipo</label> <input
+						id="txtCodigoMaterial" name="txtCodigoMaterial" type="text"
+						ng-model="editTrackingstock.codmaterial"
+						placeholder="Ingrese c&oacute;digo de equipo del Formato" required="required"
+						class="form-control input-md" autofocus>
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="col-sm-12">
+					<label class="control-label">C&oacute;digo de chip</label> <input
+						id="txtCodigoMaterialChip" name="txtCodigoMaterialChip" type="text"
+						ng-model="editTrackingstock.codmaterialchip"
+						placeholder="Ingrese c&oacute;digo de chip del Formato" required="required"
+						class="form-control input-md">
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="col-sm-12">
+					<label class="control-label">Descripci&oacute;n log</label> <input
+						id="txtDesLog" name="txtDesLog" type="text"
+						ng-model="editTrackingstock.deslog"
+						placeholder="Ingrese descripci&oacute;n log del Formato" required="required"
+						class="form-control input-md">
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="col-sm-12">
+					<label class="control-label">N&uacute;mero log</label> <input
+						id="txtNroLog" name="txtNroLog" type="text"
+						ng-model="editTrackingstock.nrolog"
+						placeholder="Ingrese n&uacute;mero log del Formato" required="required"
+						class="form-control input-md">
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="col-sm-12">
+					<label class="control-label">Stock de material</label> <input
+						id="txtStockMaterial" name="txtStockMaterial" type="text"
+						ng-model="editTrackingstock.stockmaterial"
+						placeholder="Ingrese stock de material del Formato" required="required"
+						class="form-control input-md">
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="col-sm-12">
+					<label class="control-label">Stock de chip</label> <input
+						id="txtStockChip" name="txtStockChip" type="text"
+						ng-model="editTrackingstock.stockchip"
+						placeholder="Ingrese stock de chip del Formato" required="required"
+						class="form-control input-md">
+				</div>
+			</div>
+
+		</div>
+		<div class="modal-footer">
+			<div class="form-group">
+				<label class="col-md-4 control-label"></label>
+				<div class="col-md-8">
+					<button id="btnActualizar" type="button" ng-click="btnActualizar()"
+						class="btn btn-success">Actualizar</button>
+					<button type="button" ng-click="cancel()" class="btn btn-warning">Cancelar</button>
+				</div>
+			</div>
+		</div>
+
+	</form>
+
+</div>
+<script>
+	document.getElementById("txtCodigoMaterial").focus();
+	document.getElementById("txtCodigoMaterial").addEventListener("keyup",
+			function(event) {
+				event.preventDefault();
+				if (event.keyCode === 13) {
+					document.getElementById("btnActualizar").click();
+				}
+			});
+	document.getElementById("txtCodigoMaterialChip").addEventListener("keyup",
+			function(event) {
+				event.preventDefault();
+				if (event.keyCode === 13) {
+					document.getElementById("btnActualizar").click();
+				}
+			});
+	document.getElementById("txtDesLog").addEventListener("keyup",
+			function(event) {
+				event.preventDefault();
+				if (event.keyCode === 13) {
+					document.getElementById("btnActualizar").click();
+				}
+			});
+	document.getElementById("txtNroLog").addEventListener("keyup",
+			function(event) {
+				event.preventDefault();
+				if (event.keyCode === 13) {
+					document.getElementById("btnActualizar").click();
+				}
+			});
+	document.getElementById("txtStockMaterial").addEventListener("keyup",
+			function(event) {
+				event.preventDefault();
+				if (event.keyCode === 13) {
+					document.getElementById("btnActualizar").click();
+				}
+			});
+	document.getElementById("txtStockChip").addEventListener("keyup",
+			function(event) {
+				event.preventDefault();
+				if (event.keyCode === 13) {
+					document.getElementById("btnActualizar").click();
+				}
+			});
+</script>

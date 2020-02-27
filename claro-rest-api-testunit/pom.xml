@@ -7,23 +7,12 @@
 		<artifactId>claro-rest-api</artifactId>
 		<version>1.0</version>
 	</parent>
-	<artifactId>ServiceRESTPinPortabilidadClaroAvatar</artifactId>
+	<artifactId>claro-rest-api-testunit</artifactId>
 	<dependencies>
 		<dependency>
 			<groupId>claro-rest-api</groupId>
 			<artifactId>claro-rest-api-util</artifactId>
 			<version>1.0</version>
 		</dependency>
-		<dependency>
-			<groupId>claro-rest-api</groupId>
-			<artifactId>claro-rest-api-domain</artifactId>
-			<version>1.0</version>
-		</dependency>
-		<dependency>
-			<groupId>claro-rest-api</groupId>
-			<artifactId>claro-rest-api-model</artifactId>
-			<version>1.0</version>
-		</dependency>
 	</dependencies>
-	<packaging>war</packaging>
 </project>
