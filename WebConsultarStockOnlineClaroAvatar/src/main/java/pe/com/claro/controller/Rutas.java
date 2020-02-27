@@ -6,14 +6,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class Rutas {
 
-	@GetMapping("/WebConsultarStockOnlineClaroAvatar")
+	@GetMapping("/")
 	public String redirect() {
-		return "redirect:/stockonline";
+		return "redirect:/trackingstock";
 	}
 
-	@GetMapping("/stockonline")
-	public String stockonline() {
-		return "stockonline";
+	@GetMapping("/trackingstock")
+	public String trackingstock() {
+		return "trackingstock";
 	}
 
 }
