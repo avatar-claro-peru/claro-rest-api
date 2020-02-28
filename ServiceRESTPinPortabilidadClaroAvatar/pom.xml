@@ -32,6 +32,7 @@
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-war-plugin</artifactId>
 				<configuration>
+					<warName>ServiceRESTPinPortabilidadClaroAvatar</warName>
 					<outputDirectory>C:\apache-tomcat-8.5.46\webapps</outputDirectory>
 				</configuration>
 			</plugin>
