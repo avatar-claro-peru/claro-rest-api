@@ -1,29 +1,20 @@
 <div id="myModal">
 
-	<form class="form-horizontal">
+	<form class="form-horizontal" id="frm_update">
 
 		<div class="modal-header modal-header-primary">
-			<h3 class="modal-title text-center">Editar Tracking Stock</h3>
+			<h3 class="modal-title text-center">Editar TrackingStock</h3>
 		</div>
 		<br />
 		<div class="modal-body">
 
 			<div class="form-group">
 				<div class="col-sm-12">
-					<label class="control-label">C&oacute;digo de equipo</label> <input
-						id="txtCodigoMaterial" name="txtCodigoMaterial" type="text"
-						ng-model="editTrackingstock.codmaterial"
-						placeholder="Ingrese c&oacute;digo de equipo del Formato" required="required"
-						class="form-control input-md" autofocus>
-				</div>
-			</div>
-			<div class="form-group">
-				<div class="col-sm-12">
-					<label class="control-label">C&oacute;digo de chip</label> <input
-						id="txtCodigoMaterialChip" name="txtCodigoMaterialChip" type="text"
-						ng-model="editTrackingstock.codmaterialchip"
-						placeholder="Ingrese c&oacute;digo de chip del Formato" required="required"
-						class="form-control input-md">
+					<label class="control-label">C&oacute;digo</label> <input
+						id="txtCodigo" name="txtCodigo" type="text"
+						ng-model="editTrackingstock.codigo"
+						placeholder="Ingrese c&oacute;digo" required="required"
+						class="form-control input-md" autofocus disabled>
 				</div>
 			</div>
 			<div class="form-group">
@@ -31,34 +22,34 @@
 					<label class="control-label">Descripci&oacute;n log</label> <input
 						id="txtDesLog" name="txtDesLog" type="text"
 						ng-model="editTrackingstock.deslog"
-						placeholder="Ingrese descripci&oacute;n log del Formato" required="required"
+						placeholder="Ingrese descripci&oacute;n log" required="required"
 						class="form-control input-md">
 				</div>
 			</div>
 			<div class="form-group">
 				<div class="col-sm-12">
 					<label class="control-label">N&uacute;mero log</label> <input
-						id="txtNroLog" name="txtNroLog" type="text"
+						id="txtNroLog" name="txtNroLog" type=text
 						ng-model="editTrackingstock.nrolog"
-						placeholder="Ingrese n&uacute;mero log del Formato" required="required"
+						placeholder="Ingrese n&uacute;mero log" required="required"
 						class="form-control input-md">
 				</div>
 			</div>
 			<div class="form-group">
 				<div class="col-sm-12">
 					<label class="control-label">Stock de material</label> <input
-						id="txtStockMaterial" name="txtStockMaterial" type="text"
+						id="txtStockMaterial" name="txtStockMaterial" type="number"
 						ng-model="editTrackingstock.stockmaterial"
-						placeholder="Ingrese stock de material del Formato" required="required"
+						placeholder="Ingrese stock de material" required="required"
 						class="form-control input-md">
 				</div>
 			</div>
 			<div class="form-group">
 				<div class="col-sm-12">
 					<label class="control-label">Stock de chip</label> <input
-						id="txtStockChip" name="txtStockChip" type="text"
+						id="txtStockChip" name="txtStockChip" type="number"
 						ng-model="editTrackingstock.stockchip"
-						placeholder="Ingrese stock de chip del Formato" required="required"
+						placeholder="Ingrese stock de chip" required="required"
 						class="form-control input-md">
 				</div>
 			</div>
@@ -79,15 +70,8 @@
 
 </div>
 <script>
-	document.getElementById("txtCodigoMaterial").focus();
-	document.getElementById("txtCodigoMaterial").addEventListener("keyup",
-			function(event) {
-				event.preventDefault();
-				if (event.keyCode === 13) {
-					document.getElementById("btnActualizar").click();
-				}
-			});
-	document.getElementById("txtCodigoMaterialChip").addEventListener("keyup",
+	document.getElementById("txtCodigo").focus();
+	document.getElementById("txtCodigo").addEventListener("keyup",
 			function(event) {
 				event.preventDefault();
 				if (event.keyCode === 13) {

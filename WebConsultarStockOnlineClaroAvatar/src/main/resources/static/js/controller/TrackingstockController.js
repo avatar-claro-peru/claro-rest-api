@@ -93,7 +93,7 @@ app.controller('modalCreateTrackingstock', function($scope, $http, $modalInstanc
 		
 		/** 1.Validacion de campos frontend - INICIO*/
 		if ($scope.trackingstock == null) {
-				angular.element('#txtCodigoMaterial').focus();
+				angular.element('#txtCodigo').focus();
 				swal({
 					  title: "Complete todos los campos..",
 					  text: " ",
@@ -102,26 +102,6 @@ app.controller('modalCreateTrackingstock', function($scope, $http, $modalInstanc
 					  timer: 1500,
 					});
 				
-		} else if ($scope.trackingstock.codmaterial == null) {
-			angular.element('#txtCodigoMaterial').focus();
-			swal({
-				  title: "Ingrese código de Equipo.",
-				  text: " ",
-				  icon: "error",
-				  button: false,
-				  timer: 1500,
-				});
-			
-		} else if ($scope.trackingstock.codmaterialchip == null) {
-			angular.element('#txtCodigoMaterialChip').focus();
-			swal({
-				  title: "Ingrese código de chip.",
-				  text: " ",
-				  icon: "error",
-				  button: false,
-				  timer: 1500,
-				});
-			
 		} else if ($scope.trackingstock.stockmaterial == null) {
 			angular.element('#txtStockMaterial').focus();
 			swal({
@@ -199,7 +179,7 @@ app.controller('modalUpdateTrackingstock', function($scope, $log, $http,$locatio
 			data : $scope.trackingstockActualizar
 		}).then(function(response) {
 			if (response.data.codigo == "1") {
-				angular.element('#txtCodigoMaterialChip').focus();
+				angular.element('#txtCodigo').focus();
 				swal({
 					  title: "Debes completar los campos correctamente.",
 					  text: " ",

@@ -186,8 +186,7 @@ public class Constante {
 		public static final String LOG_CRUD_ENCONTRAR_X_TODOS = " encontrar todos ";
 		public static final String LOG_CRUD_ENCONTRAR_X_PARAMETRO = " encontrar por parametro ";
 		/* mllamocca_26022020: Se agregan constantes para TrackingStock. INICIO **/
-		public static final String LOG_CRUD_ENCONTRAR_X_COD_MATERIAL_CHIP = " encontrar por codigo de material chip ";
-		public static final String LOG_CRUD_ENCONTRAR_X_COD_MATERIAL = " encontrar por codigo de material ";
+		public static final String LOG_CRUD_ENCONTRAR_X_CODIGO = " encontrar por codigo ";
 		public static final String COD_RESPUESTA_EXITO = "0";
 		public static final String MSJ_RESPUESTA_EXITO = "Éxito";
 		public static final String COD_RESPUESTA_NO_EXITO = "1";

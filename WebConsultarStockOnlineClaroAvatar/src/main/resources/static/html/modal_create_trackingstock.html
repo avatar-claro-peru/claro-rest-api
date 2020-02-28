@@ -10,19 +10,10 @@
 
 			<div class="form-group">
 				<div class="col-sm-12">
-					<label class="control-label">C&oacute;digo de equipo</label> <input
-						id="txtCodigoMaterial" name="txtCodigoMaterial" type="text"
-						ng-model="trackingstock.codmaterial"
-						placeholder="Ingrese c&oacute;digo del Equipo" required="required"
-						class="form-control input-md" autofocus>
-				</div>
-			</div>
-			<div class="form-group">
-				<div class="col-sm-12">
-					<label class="control-label">C&oacute;digo de chip</label> <input
-						id="txtCodigoMaterialChip" name="txtCodigoMaterialChip" type="text"
-						ng-model="trackingstock.codmaterialchip"
-						placeholder="Ingrese c&oacute;digo del Chip" required="required"
+					<label class="control-label">C&oacute;digo</label> <input
+						id="txtCodigo" name="txtCodigo" type="text"
+						ng-model="trackingstock.codigo"
+						placeholder="Ingrese c&oacute;digo" required="required"
 						class="form-control input-md" autofocus>
 				</div>
 			</div>
@@ -31,7 +22,7 @@
 					<label class="control-label">Descripci&oacute;n log</label> <input
 						id="txtDesLog" name="txtDesLog" type="text"
 						ng-model="trackingstock.deslog"
-						placeholder="Ingrese Descripci&oacute;n Log" required="required"
+						placeholder="Ingrese Descripci&oacute;n log" required="required"
 						class="form-control input-md" autofocus>
 				</div>
 			</div>
@@ -40,25 +31,25 @@
 					<label class="control-label">N&uacute;mero log</label> <input
 						id="txtNroLog" name="txtNroLog" type="text"
 						ng-model="trackingstock.nrolog"
-						placeholder="Ingrese N&uacute;mero Log" required="required"
+						placeholder="Ingrese N&uacute;mero log" required="required"
 						class="form-control input-md" autofocus>
 				</div>
 			</div>
 			<div class="form-group">
 				<div class="col-sm-12">
 					<label class="control-label">Stock de material</label> <input
-						id="txtStockMaterial" name="txtStockMaterial" type="text"
-						ng-model="trackingstock.stockmaterial"
-						placeholder="Ingrese stock del Material" required="required"
+						id="txtStockMaterial" name="txtStockMaterial" type="number"
+						min="0" max="99999" ng-model="trackingstock.stockmaterial"
+						placeholder="Ingrese stock del material" required="required"
 						class="form-control input-md" autofocus>
 				</div>
 			</div>
 			<div class="form-group">
 				<div class="col-sm-12">
 					<label class="control-label">Stock de chip</label> <input
-						id="txtStockMaterialChip" name="txtStockMaterialChip" type="text"
-						ng-model="trackingstock.stockchip"
-						placeholder="Ingrese stock del Chip" required="required"
+						id="txtStockMaterialChip" name="txtStockMaterialChip"
+						type="number" min="0" max="99999" ng-model="trackingstock.stockchip"
+						placeholder="Ingrese stock del chip" required="required"
 						class="form-control input-md" autofocus>
 				</div>
 			</div>
@@ -79,15 +70,8 @@
 
 </div>
 <script>
-	document.getElementById("txtCodigoMaterial").focus();
-	document.getElementById("txtCodigoMaterial").addEventListener("keyup",
-			function(event) {
-				event.preventDefault();
-				if (event.keyCode === 13) {
-					document.getElementById("btnGuardar").click();
-				}
-			});
-	document.getElementById("txtCodigoMaterialChip").addEventListener("keyup",
+	document.getElementById("txtCodigo").focus();
+	document.getElementById("txtCodigo").addEventListener("keyup",
 			function(event) {
 				event.preventDefault();
 				if (event.keyCode === 13) {

@@ -15,11 +15,8 @@ public class TrackingStock {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 
-	@Column(name = "codmaterial")
-	private String codmaterial;
-
-	@Column(name = "codmaterialchip")
-	private String codmaterialchip;
+	@Column(name = "codigo")
+	private String codigo;
 
 	@Column(name = "deslog")
 	private String deslog;
@@ -41,20 +38,12 @@ public class TrackingStock {
 		this.id = id;
 	}
 
-	public String getCodmaterial() {
-		return codmaterial;
+	public String getCodigo() {
+		return codigo;
 	}
 
-	public void setCodmaterial(String codmaterial) {
-		this.codmaterial = codmaterial;
-	}
-
-	public String getCodmaterialchip() {
-		return codmaterialchip;
-	}
-
-	public void setCodmaterialchip(String codmaterialchip) {
-		this.codmaterialchip = codmaterialchip;
+	public void setCodigo(String codigo) {
+		this.codigo = codigo;
 	}
 
 	public String getDeslog() {

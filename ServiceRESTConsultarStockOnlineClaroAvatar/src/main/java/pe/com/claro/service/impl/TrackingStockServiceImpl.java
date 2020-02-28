@@ -60,17 +60,9 @@ public class TrackingStockServiceImpl implements TrackingStockService {
 	}
 
 	@Override
-	public TrackingStock buscarXCodmaterialchip(String codmaterialchip) {
-		log.info(Constante.GENERICO.LOG_INICIA_PROCESO_PARA + Constante.GENERICO.LOG_CRUD_ENCONTRAR_X_COD_MATERIAL_CHIP
-				+ ENTIDAD);
-		return trackingStockDao.findByCodmaterialchip(codmaterialchip);
-	}
-
-	@Override
-	public TrackingStock buscarXCodmaterial(String codmaterial) {
-		log.info(Constante.GENERICO.LOG_INICIA_PROCESO_PARA + Constante.GENERICO.LOG_CRUD_ENCONTRAR_X_COD_MATERIAL
-				+ ENTIDAD);
-		return trackingStockDao.findByCodmaterial(codmaterial);
+	public List<TrackingStock> buscarXCodigo(String codigo) {
+		log.info(Constante.GENERICO.LOG_INICIA_PROCESO_PARA + Constante.GENERICO.LOG_CRUD_ENCONTRAR_X_CODIGO + ENTIDAD);
+		return trackingStockDao.findByCodigo(codigo);
 	}
 
 }

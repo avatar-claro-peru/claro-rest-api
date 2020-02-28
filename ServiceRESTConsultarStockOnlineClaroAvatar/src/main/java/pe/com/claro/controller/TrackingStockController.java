@@ -42,8 +42,7 @@ public class TrackingStockController {
 		RespuestaDomain respuesta = new RespuestaDomain();
 		HttpStatus trackingStockHttp = null;
 
-		if (trackingStock == null || StringUtils.isBlank(trackingStock.getCodmaterial())
-				|| StringUtils.isBlank(trackingStock.getCodmaterialchip())) {
+		if (trackingStock == null || StringUtils.isBlank(trackingStock.getCodigo())) {
 			respuesta.setCodigo(Constante.GENERICO.COD_RESPUESTA_NO_EXITO);
 			respuesta.setMensaje(Constante.GENERICO.MSJ_RESPUESTA_NO_EXITO);
 			trackingStockHttp = HttpStatus.CREATED;
@@ -69,8 +68,7 @@ public class TrackingStockController {
 		RespuestaDomain respuesta = new RespuestaDomain();
 		HttpStatus trackingStockHttp = null;
 
-		if (trackingStock == null || StringUtils.isBlank(trackingStock.getCodmaterial())
-				|| StringUtils.isBlank(trackingStock.getCodmaterialchip())) {
+		if (trackingStock == null || StringUtils.isBlank(trackingStock.getCodigo())) {
 			respuesta.setCodigo(Constante.GENERICO.COD_RESPUESTA_NO_EXITO);
 			respuesta.setMensaje(Constante.GENERICO.MSJ_RESPUESTA_NO_EXITO);
 			trackingStockHttp = HttpStatus.CREATED;
@@ -129,7 +127,6 @@ public class TrackingStockController {
 		log.info("Inicia método listar TrackingStock.");
 		TrackingStock trackingStock = new TrackingStock();
 		HttpStatus trackingStockHttp = null;
-
 		try {
 			trackingStock = trackingStockService.encontrarXId(id);
 			trackingStockHttp = HttpStatus.OK;
@@ -144,7 +141,7 @@ public class TrackingStockController {
 	public ResponseEntity<RespuestaDomain> listar(@PathVariable("codigo") String codigo) {
 		log.info("Inicia método buscar por codigo TrackingStock.");
 		RespuestaDomain respuesta = new RespuestaDomain();
-		TrackingStock trackingStock = new TrackingStock();
+		List<TrackingStock> lstTrackingStock = new ArrayList<>();
 		HttpStatus trackingStockHttp = null;
 
 		if (StringUtils.isBlank(codigo)) {
@@ -155,16 +152,10 @@ public class TrackingStockController {
 		}
 
 		try {
-
-			if (Constante.GENERICO.CODIGO_CHIP.equalsIgnoreCase(codigo)) {
-				trackingStock = trackingStockService.buscarXCodmaterialchip(codigo);
-			} else {
-				trackingStock = trackingStockService.buscarXCodmaterial(codigo);
-			}
-
+			lstTrackingStock = trackingStockService.buscarXCodigo(codigo);
 			respuesta.setCodigo(Constante.GENERICO.COD_RESPUESTA_EXITO);
 			respuesta.setMensaje(Constante.GENERICO.MSJ_RESPUESTA_EXITO);
-			respuesta.setObjeto(trackingStockService.crear(trackingStock));
+			respuesta.setObjeto(lstTrackingStock);
 			trackingStockHttp = HttpStatus.OK;
 		} catch (Exception e) {
 			log.error(constante.MSJ_INTERNAL_SERVER_ERROR(), e.getMessage());

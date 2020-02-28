@@ -1,9 +1,10 @@
 package pe.com.claro.service;
 
+import java.util.List;
+
 import pe.com.claro.model.TrackingStock;
 
 public interface TrackingStockService extends GenericService<TrackingStock, Integer> {
 
-	TrackingStock buscarXCodmaterialchip(String codmaterialchip);
-	TrackingStock buscarXCodmaterial(String codmaterial);
+	List<TrackingStock> buscarXCodigo(String codigo);
 }
