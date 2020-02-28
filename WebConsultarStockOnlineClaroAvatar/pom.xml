@@ -9,4 +9,15 @@
 	</parent>
 	<artifactId>WebConsultarStockOnlineClaroAvatar</artifactId>
 	<packaging>war</packaging>
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-war-plugin</artifactId>
+				<configuration>
+					<outputDirectory>C:\apache-tomcat-8.5.46\webapps</outputDirectory>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
 </project>
