@@ -5,6 +5,6 @@ document.title = 'apirest';
 
 var apiTrackingstock = '/api/trackingstock/';
 
-var hostname = 'http://localhost:9080/ServiceRESTConsultarStockOnlineClaroAvatar';
+var hostname = 'http://localhost:8080/ServiceRESTConsultarStockOnlineClaroAvatar';
 
 var app = angular.module('apirest', [ 'ui.bootstrap', 'ngCookies' ]);
