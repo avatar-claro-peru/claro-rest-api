@@ -95,7 +95,7 @@ app.controller('modalCreateTrackingstock', function($scope, $http, $modalInstanc
 		if ($scope.trackingstock == null) {
 				angular.element('#txtCodigo').focus();
 				swal({
-					  title: "Complete todos los campos..",
+					  title: "Complete todos los campos...",
 					  text: " ",
 					  icon: "error",
 					  button: false,
@@ -115,7 +115,7 @@ app.controller('modalCreateTrackingstock', function($scope, $http, $modalInstanc
 		} else if ($scope.trackingstock.stockchip == null) {
 			angular.element('#txtStockChip').focus();
 			swal({
-				  title: "IIngrese stock para el Chip.",
+				  title: "Ingrese stock para el Chip.",
 				  text: " ",
 				  icon: "error",
 				  button: false,

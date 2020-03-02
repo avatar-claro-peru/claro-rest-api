@@ -1,7 +1,7 @@
 {
-	"name": "apirest",
-	"short_name": "apirest",
-	"description": "apirest",
+	"name": "WebConsultarStockOnlineClaroAvatar",
+	"short_name": "WebConsultarStockOnlineClaroAvatar",
+	"description": "WebConsultarStockOnlineClaroAvatar",
 	"background_color": "#2B2B2B",
 	"theme_color": "#F0DB4F",
 	"orientation": "portrait",
@@ -11,12 +11,12 @@
 	"lang": "es-PE",
 	"icons": [
 		{
-			"src": "../img/abb.jpg",
+			"src": "../img/avatar.jpg",
 			"sizes": "64x64",
 			"type": "image/jpg"
 		},
 		{
-			"src": "../img/abb.png",
+			"src": "../img/avatar.png",
 			"sizes": "64x64",
 			"type": "image/png"
 		}
